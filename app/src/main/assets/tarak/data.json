@@ -1,0 +1,91 @@
+{
+  "identifier": "tarak",
+  "name": "Jethalaal Stickers",
+  "publisher": "Stickers Wale",
+  "tray_image_file": "tkm3.webp",
+  "image_data_version": "1",
+  "avoid_cache": false,
+  "publisher_email": "",
+  "publisher_website": "",
+  "privacy_policy_website": "",
+  "license_agreement_website": "",
+  "stickers": [
+    {
+      "image_file": "tkm1.webp",
+      "emojis": [
+        "☕",
+        "🙂"
+      ]
+    },
+    {
+      "image_file": "tkm2.webp",
+      "emojis": [
+        "😄",
+        "😀"
+      ]
+    },
+    {
+      "image_file": "tkm3.webp",
+      "emojis": [
+        "😆",
+        "😂"
+      ]
+    },
+    {
+      "image_file": "tkm4.webp",
+      "emojis": [
+        "😩",
+        "😰"
+      ]
+    },
+    {
+      "image_file": "tkm5.webp",
+      "emojis": [
+        "😭",
+        "💧"
+      ]
+    },
+    {
+      "image_file": "tkm6.webp",
+      "emojis": [
+        "😍",
+        "♥"
+      ]
+    },
+    {
+      "image_file": "tkm7.webp",
+      "emojis": [
+        "💔",
+        "👎"
+      ]
+    },
+    {
+      "image_file": "tkm8.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    },
+    {
+      "image_file": "tkm9.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    },
+    {
+      "image_file": "tkm10.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    },
+    {
+      "image_file": "tkm11.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    }
+  ]
+}

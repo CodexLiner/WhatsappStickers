@@ -1,0 +1,105 @@
+{
+  "identifier": "god",
+  "name": "Ramayan Stickers",
+  "publisher": "Stickers Wale",
+  "tray_image_file": "dev1.webp",
+  "image_data_version": "1",
+  "avoid_cache": false,
+  "publisher_email": "",
+  "publisher_website": "",
+  "privacy_policy_website": "",
+  "license_agreement_website": "",
+  "stickers": [
+    {
+      "image_file": "dev1.webp",
+      "emojis": [
+        "☕",
+        "🙂"
+      ]
+    },
+    {
+      "image_file": "dev2.webp",
+      "emojis": [
+        "😄",
+        "😀"
+      ]
+    },
+    {
+      "image_file": "dev3.webp",
+      "emojis": [
+        "😆",
+        "😂"
+      ]
+    },
+    {
+      "image_file": "dev4.webp",
+      "emojis": [
+        "😩",
+        "😰"
+      ]
+    },
+    {
+      "image_file": "dev5.webp",
+      "emojis": [
+        "😭",
+        "💧"
+      ]
+    },
+    {
+      "image_file": "dev6.webp",
+      "emojis": [
+        "😍",
+        "♥"
+      ]
+    },
+    {
+      "image_file": "dev7.webp",
+      "emojis": [
+        "💔",
+        "👎"
+      ]
+    },
+    {
+      "image_file": "dev8.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    },
+    {
+      "image_file": "dev9.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    },
+    {
+      "image_file": "dev10.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    },
+    {
+      "image_file": "dev11.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    },
+    {
+      "image_file": "dev12.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    },
+    {
+      "image_file": "dev13.webp",
+      "emojis": [
+        "😍",
+        "💑"
+      ]
+    }
+  ]
+}
