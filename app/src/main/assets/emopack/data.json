@@ -1,0 +1,161 @@
+{
+    "identifier": "emopack",
+    "name": "Emoji's Pack",
+    "publisher": "Stickers Wale",
+    "tray_image_file": "emo2.webp",
+    "image_data_version": "1",
+    "avoid_cache": false,
+    "publisher_email": "",
+    "publisher_website": "",
+    "privacy_policy_website": "",
+    "license_agreement_website": "",
+    "stickers": [
+      {
+        "image_file": "emo1.webp",
+        "emojis": [
+          "☕",
+          "🙂"
+        ]
+      },
+      {
+        "image_file": "emo2.webp",
+        "emojis": [
+          "😄",
+          "😀"
+        ]
+      },
+      {
+        "image_file": "emo3.webp",
+        "emojis": [
+          "😆",
+          "😂"
+        ]
+      },
+      {
+        "image_file": "emo4.webp",
+        "emojis": [
+          "😩",
+          "😰"
+        ]
+      },
+      {
+        "image_file": "emo5.webp",
+        "emojis": [
+          "😭",
+          "💧"
+        ]
+      },
+      {
+        "image_file": "emo6.webp",
+        "emojis": [
+          "😍",
+          "♥"
+        ]
+      },
+      {
+        "image_file": "emo7.webp",
+        "emojis": [
+          "💔",
+          "👎"
+        ]
+      },
+      {
+        "image_file": "emo8.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo9.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo10.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo11.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo12.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo13.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo14.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo15.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo16.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo17.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo18.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo19.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo20.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      },
+      {
+        "image_file": "emo21.webp",
+        "emojis": [
+          "😍",
+          "💑"
+        ]
+      }
+    ]
+  }

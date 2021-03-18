@@ -3,8 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.CodingErgo.sticker">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--
+     to be able to query the whitelist status in WhatsApp 
+     https://developer.android.com/training/basics/intents/package-visibility#package-name
+    -->
+    <queries>
+        <package android:name="com.whatsapp" />
+        <package android:name="com.whatsapp.w4b" />
+    </queries>
+
     <application
-        android:name="com.CodingErgo.sticker.StickerApplication"
+        android:name=".StickerManager.StickerApplication"
         android:allowBackup="false"
         android:fullBackupContent="false"
         android:icon="@mipmap/ic_launcher"
@@ -13,46 +25,45 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.CodingErgo.sticker.EntryActivity">
+        <activity android:name=".WhatsappStatus.status"></activity>
+        <activity android:name=".WhatsappStatus.download" />
+        <activity android:name=".StickerManager.EntryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.CodingErgo.sticker.StickerPackListActivity" />
+        <activity android:name=".StickerManager.StickerPackListActivity" />
         <activity
-            android:name="com.CodingErgo.sticker.StickerPackDetailsActivity"
-            android:parentActivityName="com.CodingErgo.sticker.StickerPackListActivity"
+            android:name=".StickerManager.StickerPackDetailsActivity"
+            android:parentActivityName=".StickerManager.StickerPackListActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.CodingErgo.sticker.StickerPackListActivity" />
+                android:value="com.CodingErgo.sticker.StickerManager.StickerPackListActivity" />
         </activity>
         <activity
-            android:name="com.CodingErgo.sticker.StickerPackInfoActivity"
+            android:name=".StickerManager.StickerPackInfoActivity"
             android:label="@string/title_activity_sticker_pack_info"
-            android:parentActivityName="com.CodingErgo.sticker.StickerPackDetailsActivity"
+            android:parentActivityName=".StickerManager.StickerPackDetailsActivity"
             tools:ignore="UnusedAttribute">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.CodingErgo.sticker.StickerPackDetailsActivity" />
+                android:value="com.CodingErgo.sticker.StickerManager.StickerPackDetailsActivity" />
         </activity>
 
         <provider
-            android:name="com.CodingErgo.sticker.StickerContentProvider"
+            android:name=".StickerManager.StickerContentProvider"
             android:authorities="${contentProviderAuthority}"
             android:enabled="true"
             android:exported="true"
+            android:grantUriPermissions="true"
             android:readPermission="com.whatsapp.sticker.READ" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
 
-    <!-- to be able to query the whitelist status in WhatsApp 
-     https://developer.android.com/training/basics/intents/package-visibility#package-name -->
-    <queries>
-        <package android:name="com.whatsapp" />
-        <package android:name="com.whatsapp.w4b" />
-    </queries>
 </manifest>

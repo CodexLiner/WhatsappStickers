@@ -15,7 +15,7 @@
     android:paddingEnd="16dp"
     android:paddingRight="16dp"
     android:paddingBottom="4dp"
-    android:layout_margin="10dp">
+    android:layout_margin="5dp">
 
     <ImageView
         android:id="@+id/add_button_on_list"
@@ -50,13 +50,12 @@
                 <TextView
                     android:id="@+id/sticker_pack_title"
                     style="@style/sticker_packs_list_item_author_style"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:ellipsize="end"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
-                    tools:text="Pusheen" />
+                    tools:text="Loading..." />
                 <ImageView
                     android:id="@+id/sticker_pack_animation_indicator"
                     android:layout_width="wrap_content"

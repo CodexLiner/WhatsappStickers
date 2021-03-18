@@ -3,10 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StickerPackListActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".StickerManager.StickerPackListActivity"
     tools:showIn="@layout/activity_sticker_pack_list">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/actionbarshape">
+        <TextView
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sticker's Wale"
+            android:layout_margin="15dp"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
+
+
+
+    </LinearLayout>
 
     <TextView
+        android:layout_marginTop="60dp"
         android:id="@+id/error_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,8 +34,19 @@
         tools:text="@string/error_message" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="60dp"
         android:id="@+id/sticker_pack_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="52dp"/>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:background="@drawable/actionbarshape"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/bottom_menui"/>
 
 </FrameLayout>

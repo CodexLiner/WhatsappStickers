@@ -4,11 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="@dimen/preview_side_margin"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/actionbarshape">
+        <TextView
+            android:textColor="#ffff"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sticker Details"
+            android:layout_margin="15dp"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
+
+
+
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="10dp"
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -85,7 +101,7 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <com.CodingErgo.sticker.BottomFadingRecyclerView
+        <com.CodingErgo.sticker.StickerManager.BottomFadingRecyclerView
             android:id="@+id/sticker_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -123,6 +139,7 @@
         android:layout_marginLeft="@dimen/preview_side_margin"
         android:layout_marginEnd="@dimen/preview_side_margin"
         android:layout_marginRight="@dimen/preview_side_margin"
+        android:layout_marginBottom="10dp"
         android:minHeight="60dp">
 
         <TextView
@@ -178,7 +195,14 @@
                 android:gravity="center"
                 android:text="@string/sticker_pack_details_tap_to_preview" />
         </LinearLayout>
-
-
-    </FrameLayout>
+ </FrameLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:background="@drawable/actionbarshape"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/bottomprememu"/>
 </LinearLayout>
