@@ -16,6 +16,8 @@
     </queries>
 
     <application
+        android:grantUriPermissions="true"
+        android:requestLegacyExternalStorage="true"
         android:name=".StickerManager.StickerApplication"
         android:allowBackup="false"
         android:fullBackupContent="false"
@@ -59,7 +61,14 @@
             android:enabled="true"
             android:exported="true"
             android:grantUriPermissions="true"
-            android:readPermission="com.whatsapp.sticker.READ" />
+            tools:replace="android:authorities"
+            android:readPermission="com.whatsapp.sticker.READ" >
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/mypath"
+                tools:replace="android:resource"/>
+        </provider>
 
         <meta-data
             android:name="preloaded_fonts"

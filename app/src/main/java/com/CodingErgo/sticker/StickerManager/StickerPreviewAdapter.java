@@ -12,6 +12,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -113,7 +114,8 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                            intent.setType("images/*");
                            intent.putExtra(Intent.EXTRA_STREAM , uri);
                            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                          stickerPreviewViewHolder.itemView.getContext().startActivity(intent);
+                           stickerPreviewViewHolder.itemView.getContext().startActivity(intent);
+                           Log.d("TAG", "onClickStickerwala: "+uri);
                        }
                    });
                    save.setOnClickListener(new View.OnClickListener() {
