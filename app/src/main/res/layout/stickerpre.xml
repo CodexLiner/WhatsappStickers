@@ -35,25 +35,49 @@
             android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/dialogSave"
-                android:layout_weight="1"
-                android:background="@drawable/buttonshape"
-                android:layout_margin="10dp"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:textColor="@color/actionBarArrowColor"
-                android:text="Save"/>
-            <Button
-                android:id="@+id/dialogShare"
-                android:layout_weight="1"
-                android:background="@drawable/buttonshape"
-                android:layout_margin="10dp"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:textColor="@color/actionBarArrowColor"
-                android:text="Share"/>
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:text="@string/dialogtext"
+                android:gravity="center"
+                android:fontFamily="sans-serif-smallcaps"
+                android:textSize="20sp"/>
+           <LinearLayout
+               android:layout_marginTop="20sp"
+               android:baselineAligned="false"
+               android:gravity="center|bottom"
+               android:layout_gravity="center"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
+               <Button
+                   android:foreground="?attr/selectableItemBackgroundBorderless"
+                   android:padding="5dp"
+                   android:id="@+id/dialogSave"
+                   android:layout_weight="1"
+                   android:background="@drawable/buttonshape"
+                   android:layout_margin="10dp"
+                   android:layout_width="100dp"
+                   android:layout_height="55dp"
+                   android:textColor="@color/black"
+                   android:text="Save"/>
+               <Button
+                   android:foreground="?attr/selectableItemBackgroundBorderless"
+                   android:padding="5dp"
+                   android:id="@+id/dialogShare"
+                   android:layout_weight="1"
+                   android:background="@drawable/statushape"
+                   android:layout_margin="10dp"
+                   android:layout_width="100dp"
+                   android:drawablePadding="5dp"
+                   android:drawableTop="@drawable/ic_baseline_share_24"
+                   android:layout_height="55dp"
+                   android:textColor="@color/actionBarArrowColor"
+                   android:text="Share"/>
+           </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

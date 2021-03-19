@@ -3,7 +3,7 @@
     <item android:state_selected="true"
         android:color="@color/white" />
         <item android:state_selected="false"
-            android:color="@color/animatedStickerIndicator" />
+            android:color="@color/black" />
 
 
 </selector>

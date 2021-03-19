@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.CodingErgo.sticker.BuildConfig;
 import com.CodingErgo.sticker.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -52,7 +53,7 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
     private GridLayoutManager layoutManager;
     private StickerPreviewAdapter stickerPreviewAdapter;
     private int numColumns;
-    private View addButton;
+    private View addButton, addedButton;
     private View alreadyAddedText;
     private StickerPack stickerPack;
     private View divider;
@@ -76,6 +77,7 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
         BottomNavTest();
 
         addButton = findViewById(R.id.add_to_whatsapp_button);
+        addedButton = findViewById(R.id.added_to_whatsapp_button);
         alreadyAddedText = findViewById(R.id.already_added_text);
         layoutManager = new GridLayoutManager(this, 1);
         recyclerView = findViewById(R.id.sticker_list);
@@ -110,7 +112,6 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
                         return true;
                     }
                     case R.id.statusMenu :{
-
                                 Uri trayIconUri = StickerPackLoader.getStickerAssetUri(stickerPack.identifier, stickerPack.trayImageFile);
                                 launchInfoActivity(stickerPack.publisherWebsite, stickerPack.publisherEmail, stickerPack.privacyPolicyWebsite, stickerPack.licenseAgreementWebsite, trayIconUri.toString());
                                 return true;
@@ -208,9 +209,25 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
     private void updateAddUI(Boolean isWhitelisted) {
         if (isWhitelisted) {
             addButton.setVisibility(View.GONE);
+            addedButton.setVisibility(View.VISIBLE);
             alreadyAddedText.setVisibility(View.VISIBLE);
-            findViewById(R.id.sticker_pack_details_tap_to_preview).setVisibility(View.GONE);
+            TextView addedmsg= findViewById(R.id.sticker_pack_details_tap_to_preview);
+            addedmsg.setText("Sticker Pack Added to Whatsapp");
+            addedButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plan");
+                    intent.putExtra(Intent.EXTRA_TEXT ,
+                            "Hey I'm Using This Best Free Sticker App. Download Best Ad'sFree Sticker App From Play Store "
+                                    +"https://play.google.com/store/apps/details?id="
+                                    +BuildConfig.APPLICATION_ID);
+                    startActivity(intent);
+
+                }
+            });
         } else {
+            addedButton.setVisibility(View.GONE);
             addButton.setVisibility(View.VISIBLE);
             alreadyAddedText.setVisibility(View.GONE);
             findViewById(R.id.sticker_pack_details_tap_to_preview).setVisibility(View.VISIBLE);

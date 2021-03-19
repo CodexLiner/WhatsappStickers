@@ -10,9 +10,13 @@ package com.CodingErgo.sticker.StickerManager;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +33,12 @@ import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.File;
+import java.io.IOException;
+
+import static android.content.ContentValues.TAG;
 
 public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewViewHolder> {
 
@@ -107,6 +116,7 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                     Button share , save ;
                    save = dialog.findViewById(R.id.dialogSave);
                    share = dialog.findViewById(R.id.dialogShare);
+                   save.setText("Close");
                    share.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View v) {
@@ -121,7 +131,8 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                    save.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View v) {
-                           File file = new File(Environment.DIRECTORY_DCIM);
+                           dialog.dismiss();
+
 
                        }
                    });

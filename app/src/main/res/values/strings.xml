@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- This is the app's name, translators please do not translate and put in the same text as English version. Developers can consider putting in their own translation, this string must be changed before publishing -->
-    <string name="app_name">Sticker\'s App</string>
+    <string name="app_name">Sticker\'s Wale</string>
     <!-- Content description for the sticker pack tray image -->
     <string name="tray_image_content_description">Sticker Pack Tray Image</string>
     <!-- the title of info button in the menu that takes the user to more information about that pack showing publisher website and so on -->
@@ -42,4 +42,5 @@
     <string name="sticker_pack_animation_indicator" tools:ignore="MissingTranslation">Animated sticker pack</string>
     <!-- text we display at the end of sticker pack details page showing that users can tap sticker to see bigger version -->
     <string name="sticker_pack_details_tap_to_preview" tools:ignore="MissingTranslation">Tap to preview sticker</string>
+    <string name="dialogtext">Save or Share Sticker File with out adding to your whatsapp</string>
 </resources>

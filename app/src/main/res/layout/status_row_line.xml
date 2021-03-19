@@ -5,17 +5,17 @@
     android:layout_width="wrap_content"
     android:layout_margin="10dp"
     android:orientation="vertical"
+    android:padding="0dp"
     android:layout_marginBottom="40dp"
     android:background="@drawable/statushape"
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:elevation="1dp"
         android:id="@+id/constraintLayout2"
         android:layout_width="wrap_content"
-        android:layout_height="250dp"
-
+        android:layout_height="240dp"
         android:padding="10dp">
-
         <ImageView
             android:id="@+id/statusImage"
             android:layout_width="200dp"
@@ -39,6 +39,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:alpha="0.3"/>
         <LinearLayout
             android:baselineAligned="false"
             android:layout_gravity="center"
@@ -46,21 +51,25 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <ImageView
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:id="@+id/DownloadAdapter"
                 android:layout_weight="1"
                 android:layout_gravity="start"
                 android:padding="5dp"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                app:tint="@color/black"
                 android:src="@drawable/ic_baseline_arrow_downward_24"/>
             <ImageView
+                android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:id="@+id/shareAdapter"
                 android:layout_gravity="end"
                 android:padding="8dp"
                 android:layout_weight="1"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:src="@drawable/ic_baseline_share_24"/>
+                android:src="@drawable/ic_baseline_share_24"
+                app:tint="@color/black" />
         </LinearLayout>
 
 

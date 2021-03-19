@@ -164,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="@drawable/btn_green"
+                android:background="#1ebea5"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -183,6 +183,35 @@
                     android:focusable="false"
                     android:foreground="@android:color/transparent"
                     android:text="@string/add_to_whatsapp" />
+
+
+            </FrameLayout>
+            <FrameLayout
+                android:visibility="gone"
+                android:id="@+id/added_to_whatsapp_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/main1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/StickerPreviewButtonText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"
+                    android:clickable="false"
+                    android:drawableStart="@drawable/ic_baseline_share_24"
+                    android:drawableTint="@color/ic_launcher_background"
+                    android:drawableLeft="@drawable/ic_baseline_share_24"
+                    android:drawablePadding="8dp"
+                    android:focusable="false"
+                    android:foreground="@android:color/transparent"
+                    android:text="Share App With Friends" />
 
 
             </FrameLayout>

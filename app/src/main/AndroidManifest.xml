@@ -29,7 +29,9 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".WhatsappStatus.status"></activity>
         <activity android:name=".WhatsappStatus.download" />
-        <activity android:name=".StickerManager.EntryActivity">
+        <activity
+            android:theme="@style/AppTheme2"
+            android:name=".StickerManager.EntryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
