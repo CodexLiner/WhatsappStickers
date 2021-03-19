@@ -1,5 +1,6 @@
 package com.CodingErgo.sticker.WhatsappStatus;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
@@ -7,9 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -50,6 +54,7 @@ public class StatusAdapter extends  RecyclerView.Adapter<StatusAdapter.Holder>{
         if (model.getUri().toString().endsWith(".mp4")){
             holder.play.setVisibility(View.VISIBLE);
         }
+        if (!model.getUri().toString().endsWith(".mp4")) { holder.play.setVisibility(View.GONE); }
         Glide.with(holder.status).load(model.getUri()).into(holder.status);
         Log.d("TAG", "onBindViewHolder: "+model.getUri());
         holder.share.setOnClickListener(new View.OnClickListener() {
@@ -77,14 +82,70 @@ public class StatusAdapter extends  RecyclerView.Adapter<StatusAdapter.Holder>{
             @Override
             public void onClick(View v) {
                 File src = new File(model.getPath());
-                File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+Environment.DIRECTORY_DOWNLOADS);
+                File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+Environment.DIRECTORY_DOWNLOADS+"/Sticker's Wale");
                 try {
-                 FileUtils.copyFileToDirectory(src , dir);
-                    Toast.makeText(context, "Downloaded", Toast.LENGTH_SHORT).show();
+                    if (!dir.isDirectory()){ dir.mkdir(); dir.mkdir(); }
+                    FileUtils.copyFileToDirectory(src , dir);
+                    Toast.makeText(context, "Saved to Sticker's Wale", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(context, "Downloaded Faild"+e, Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        holder.status.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog dialog = new Dialog(holder.status.getContext());
+                dialog.setContentView(R.layout.status_tab_dialog);
+                Button share , save ;
+                share = dialog.findViewById(R.id.dialogShare);
+                save = dialog.findViewById(R.id.dialogSave);
+                VideoView video = dialog.findViewById(R.id.statusviewvideo);
+                ImageView image = dialog.findViewById(R.id.statusviewimage);
+                if (model.getUri().toString().endsWith(".mp4")){
+                    WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+                    layoutParams.copyFrom(dialog.getWindow().getAttributes());
+                    layoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
+                    layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                   dialog.getWindow().setAttributes(layoutParams);
+
+                    video.setVideoPath(model.getPath());
+                    video.setVisibility(View.VISIBLE);
+                    video.start();
+                    dialog.show();
+                }
+               if (!model.getUri().toString().endsWith(".mp4")){
+                   Glide.with(image).load(model.getUri()).into(image);
+                   image.setVisibility(View.VISIBLE);
+                   dialog.show();
+               }
+
+                share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.putExtra(Intent.EXTRA_STREAM , model.getUri());
+                        intent.setType("images/*");
+                        holder.status.getContext().startActivity(intent);
+
+                    }
+                });
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+"Sticker's Wale");
+                        File src = new File(model.getPath());
+                        try{
+                            if (!dir.isDirectory()){ dir.mkdir(); dir.mkdir(); }
+                            FileUtils.copyFileToDirectory(src , dir);
+                            Toast.makeText(holder.status.getContext(), "Saved to Sticker's Wale", Toast.LENGTH_SHORT).show();
+                        }catch (Exception e){
+                            Toast.makeText(holder.status.getContext(), "Fialed To Save", Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onClickSaveFile: "+e);
+                        }
+                    }
+                });
             }
         });
 

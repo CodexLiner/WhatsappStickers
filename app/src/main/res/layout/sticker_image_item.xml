@@ -4,5 +4,6 @@
     android:id="@+id/sticker_preview"
     android:layout_width="@dimen/sticker_pack_details_image_size"
     android:layout_height="@dimen/sticker_pack_details_image_size"
+    android:layout_margin="5dp"
     android:padding="@dimen/sticker_pack_details_image_padding"
     android:scaleType="centerCrop" />
