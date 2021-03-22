@@ -1,4 +1,4 @@
-package com.CodingErgo.sticker;
+package com.CodingErgo.sticker.WhatsappStatus;
 
 public class folderName {
     public static final String FOLDER_NAME ="/WhatsApp/";

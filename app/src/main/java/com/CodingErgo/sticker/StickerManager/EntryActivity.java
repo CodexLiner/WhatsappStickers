@@ -99,7 +99,7 @@ public class EntryActivity extends BaseActivity {
                     return new Pair<>("could not fetch sticker packs", null);
                 }
             } catch (Exception e) {
-                Log.e("EntryActivity", "error fetching sticker packs", e);
+                Log.e("EntryActivityLog", "error fetching sticker packs", e);
                 return new Pair<>(e.getMessage(), null);
             }
         }

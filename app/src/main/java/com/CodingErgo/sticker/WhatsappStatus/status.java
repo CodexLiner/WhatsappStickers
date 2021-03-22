@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.CodingErgo.sticker.R;
-import com.CodingErgo.sticker.folderName;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
