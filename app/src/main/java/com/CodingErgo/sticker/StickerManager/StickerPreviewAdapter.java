@@ -28,6 +28,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
 import com.CodingErgo.sticker.R;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -116,7 +117,7 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                     Button share , save ;
                    save = dialog.findViewById(R.id.dialogSave);
                    share = dialog.findViewById(R.id.dialogShare);
-                   save.setText("Close");
+                   save.setText("Download");
                    share.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View v) {
@@ -131,7 +132,17 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                    save.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View v) {
-                           dialog.dismiss();
+                           boolean RESULT;
+                          RESULT = MyStickerManager.RequestSaveStatus(uri.getPath() , stickerPack.identifier);
+                           if (RESULT){
+                               Toast.makeText(stickerPreviewViewHolder.itemView.getContext(), "Saved To Gallery", Toast.LENGTH_SHORT).show();
+                               dialog.dismiss();
+                           }else {
+                               Toast.makeText(stickerPreviewViewHolder.itemView.getContext(), "Failed To Save", Toast.LENGTH_SHORT).show();
+                               dialog.dismiss();
+                           }
+
+
 
 
                        }
