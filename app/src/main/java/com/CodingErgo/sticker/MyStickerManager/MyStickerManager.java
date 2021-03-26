@@ -26,23 +26,20 @@ public class MyStickerManager {
         File content = new File(Folders.ContentFolder + "contents.json");
         try(InputStream parser = new FileInputStream(content)){
             stickerPackList = ContentFileParser.parseStickerPacks(parser);
-
         }catch (IOException e){
             Log.d("TAG", "getStickerPacks: "+e);
-
         }
         return stickerPackList;
      }
      public static boolean RequestSaveStatus(String path , String identifier){
         boolean RESULT;
-        String PathForSaving = Environment.getExternalStorageDirectory() +"/"+ Environment.DIRECTORY_DOWNLOADS;
+        String PathForSaving = Environment.getExternalStorageDirectory() +"/"+ Environment.DIRECTORY_DCIM;
         String [] SplitedtUri = path.split("/");
         String mainUri = Folders.ContentFolder + identifier +"/"+ SplitedtUri[3];
         RESULT = StartCopying(PathForSaving , mainUri);
         return RESULT ;
     }
-
-    private static boolean StartCopying(String pathForSaving, String mainUri) {
+     private static boolean StartCopying(String pathForSaving, String mainUri) {
         File DEST =new File(pathForSaving);
         File SRC = new File(mainUri);
         try{
@@ -51,8 +48,6 @@ public class MyStickerManager {
         }catch (Exception e){
             return false;
         }
-
-
     }
 
 }

@@ -117,7 +117,7 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                     Button share , save ;
                    save = dialog.findViewById(R.id.dialogSave);
                    share = dialog.findViewById(R.id.dialogShare);
-                   save.setText("Download");
+                   save.setText("Save");
                    share.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View v) {

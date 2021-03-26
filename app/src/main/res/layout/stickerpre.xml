@@ -55,15 +55,18 @@
                android:layout_height="wrap_content"
                android:orientation="horizontal">
                <Button
+                   android:drawableTop="@drawable/ic_sharp_save_alt_24"
+                   android:drawablePadding="5dp"
                    android:foreground="?attr/selectableItemBackgroundBorderless"
                    android:padding="5dp"
                    android:id="@+id/dialogSave"
+                   android:drawableTint="#651FFF"
                    android:layout_weight="1"
                    android:background="@drawable/buttonshape"
                    android:layout_margin="10dp"
                    android:layout_width="100dp"
                    android:layout_height="55dp"
-                   android:textColor="@color/black"
+                   android:textColor="@color/actionBarArrowColor"
                    android:text="Save"/>
                <Button
                    android:foreground="?attr/selectableItemBackgroundBorderless"
