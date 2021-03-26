@@ -134,14 +134,14 @@ public class StatusAdapter extends  RecyclerView.Adapter<StatusAdapter.Holder>{
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+"Sticker's Wale");
+                        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+Environment.DIRECTORY_DCIM);
                         File src = new File(model.getPath());
                         try{
                             if (!dir.isDirectory()){ dir.mkdir(); dir.mkdir(); }
                             FileUtils.copyFileToDirectory(src , dir);
-                            Toast.makeText(holder.status.getContext(), "Saved to Sticker's Wale", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(holder.status.getContext(), "Saved to Gallery", Toast.LENGTH_SHORT).show();
                         }catch (Exception e){
-                            Toast.makeText(holder.status.getContext(), "Fialed To Save", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(holder.status.getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "onClickSaveFile: "+e);
                         }
                     }

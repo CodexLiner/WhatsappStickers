@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class EntryActivity extends BaseActivity {
     private View progressBar;
     private LoadListAsyncTask loadListAsyncTask;
+    boolean dResult;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,9 +37,13 @@ public class EntryActivity extends BaseActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-        progressBar = findViewById(R.id.entry_activity_progress);
-        loadListAsyncTask = new LoadListAsyncTask(this);
-        loadListAsyncTask.execute();
+        dResult = getIntent().getBooleanExtra("EntryResult" , false);
+        if (dResult){
+            progressBar = findViewById(R.id.entry_activity_progress);
+            loadListAsyncTask = new LoadListAsyncTask(this);
+            loadListAsyncTask.execute();
+        }
+
     }
 
     private void showStickerPack(ArrayList<StickerPack> stickerPackList) {

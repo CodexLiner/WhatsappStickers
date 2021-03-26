@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "861782507047",
+    "project_id": "androidstickermaker-a5595",
+    "storage_bucket": "androidstickermaker-a5595.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:861782507047:android:9572c8a068d0cdb16f1802",
+        "android_client_info": {
+          "package_name": "com.codingergo.stickermaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "861782507047-cn0c0n5hollpb1l71toljuqs590t3crn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBK-p5X87uTZf8KLnqcai0yM6F8cYQJcF4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "861782507047-cn0c0n5hollpb1l71toljuqs590t3crn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

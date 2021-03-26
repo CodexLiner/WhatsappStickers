@@ -176,9 +176,10 @@ public class StickerContentProvider extends ContentProvider {
     }
 
     private synchronized void readContentFile(@NonNull Context context) {
-        try (InputStream contentsInputStream = context.getAssets().open(CONTENT_FILE_NAME)) {
+//        try (InputStream contentsInputStream = context.getAssets().open(CONTENT_FILE_NAME))
+      try{
             stickerPackList = MyStickerManager.getStickerPacks(context);
-        } catch (IOException | IllegalStateException e) {
+        } catch (IllegalStateException e) {
             throw new RuntimeException(CONTENT_FILE_NAME + " file has some issues: " + e.getMessage(), e);
         }
     }

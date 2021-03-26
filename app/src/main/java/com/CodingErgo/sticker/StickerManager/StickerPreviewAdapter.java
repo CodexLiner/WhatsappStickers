@@ -110,15 +110,15 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                 dialog.getWindow().setAttributes(layoutParams);
                 dialog.show();
                 try{
-                    final  Uri uri = StickerPackLoader.getStickerAssetUri(stickerPack.identifier, stickerPack.getStickers().get(i).imageFileName);
-                    ImageView imageView = dialog.findViewById(R.id.stickerpreimage);
-                    ImageView cancleDialog = dialog.findViewById(R.id.cancleDialog);
-                    imageView.setImageURI(uri);
-                    Button share , save ;
-                   save = dialog.findViewById(R.id.dialogSave);
-                   share = dialog.findViewById(R.id.dialogShare);
-                   save.setText("Save");
-                   share.setOnClickListener(new View.OnClickListener() {
+                 final  Uri uri = StickerPackLoader.getStickerAssetUri(stickerPack.identifier, stickerPack.getStickers().get(i).imageFileName);
+                  ImageView imageView = dialog.findViewById(R.id.stickerpreimage);
+                  ImageView cancleDialog = dialog.findViewById(R.id.cancleDialog);
+                  imageView.setImageURI(uri);
+                  Button share , save ;
+                  save = dialog.findViewById(R.id.dialogSave);
+                  share = dialog.findViewById(R.id.dialogShare);
+                  save.setText("Save");
+                  share.setOnClickListener(new View.OnClickListener() {
                        @Override
                        public void onClick(View v) {
                            Intent intent = new Intent(Intent.ACTION_SEND);
@@ -136,15 +136,10 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                           RESULT = MyStickerManager.RequestSaveStatus(uri.getPath() , stickerPack.identifier);
                            if (RESULT){
                                Toast.makeText(stickerPreviewViewHolder.itemView.getContext(), "Saved To Gallery", Toast.LENGTH_SHORT).show();
-                               dialog.dismiss();
                            }else {
-                               Toast.makeText(stickerPreviewViewHolder.itemView.getContext(), "Failed To Save", Toast.LENGTH_SHORT).show();
-                               dialog.dismiss();
+                               Toast.makeText(stickerPreviewViewHolder.itemView.getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                            }
-
-
-
-
+                           dialog.dismiss();
                        }
                    });
                     cancleDialog.setOnClickListener(new View.OnClickListener() {
@@ -156,8 +151,6 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                 }catch (Exception e){
                     Toast.makeText(stickerPreviewViewHolder.itemView.getContext(), "Error", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
     }
