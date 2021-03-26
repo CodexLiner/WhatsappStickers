@@ -9,6 +9,7 @@
     tools:context=".MyManager.MyDownloadManager">
 
     <pl.droidsonroids.gif.GifImageView
+        android:background="#0e1e2f"
         android:id="@+id/gifImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

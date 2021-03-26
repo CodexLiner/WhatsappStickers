@@ -43,6 +43,7 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:layout_margin="10dp"
             android:baselineAligned="false"
             android:gravity="center|top"
             android:layout_gravity="center"

@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.CodingErgo.sticker.Constants.Folders;
 import com.CodingErgo.sticker.R;
@@ -41,6 +42,7 @@ public class MyDownloadManager extends AppCompatActivity {
            finish();
            Log.d("TAG", "downloadRES: "+IntentResult);
        }else {
+           Toast.makeText(this, "Sticker packs are Downloading\nDo not close app", Toast.LENGTH_SHORT).show();
            File DirName = new File(Folders.ContentFolder + DownloadName);
            if (!DirName.isDirectory()){
                boolean success = DirName.mkdirs();
@@ -71,11 +73,11 @@ public class MyDownloadManager extends AppCompatActivity {
                             DownloadResult = ZipManager.ZipExtractor(Src.toString() , Dest.toString());
                             Log.d("TAG", "downloadRES: "+DownloadResult);
                             if (DownloadResult){
-                                Intent intent2 = new Intent(MyDownloadManager.this , EntryActivity.class);
+                                Intent intent2 = new Intent(MyDownloadManager.this , PermissionRequest.class);
                                 intent2.putExtra("EntryResult", DownloadResult);
                                 startActivity(intent2);
                                 overridePendingTransition(0,0);
-                                finish();
+                                System.exit(1);
                             }
 
                         }else { }

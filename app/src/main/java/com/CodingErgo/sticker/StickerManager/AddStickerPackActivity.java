@@ -100,7 +100,8 @@ public abstract class AddStickerPackActivity extends BaseActivity {
                         Log.e(TAG, "Validation failed:" + validationError);
                     }
                 } else {
-                    new StickerPackNotAddedMessageFragment().show(getSupportFragmentManager(), "sticker_pack_not_added");
+                    Toast.makeText(getApplicationContext(), "Sticker Pack Not Added", Toast.LENGTH_SHORT).show();
+                  // new StickerPackNotAddedMessageFragment().show(getSupportFragmentManager(), "sticker_pack_not_added");
                 }
             }
         }

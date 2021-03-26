@@ -39,7 +39,7 @@
         android:id="@+id/sticker_pack_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="52dp"/>
+        android:layout_marginBottom="56dp"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:background="@drawable/actionbarshape"
