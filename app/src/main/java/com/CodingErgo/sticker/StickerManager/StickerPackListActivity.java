@@ -96,7 +96,7 @@ public class StickerPackListActivity extends AddStickerPackActivity {
                 packRecyclerView.getContext(),
                 packLayoutManager.getOrientation()
         );
-        packRecyclerView.addItemDecoration(dividerItemDecoration);
+       // packRecyclerView.addItemDecoration(dividerItemDecoration);
         packRecyclerView.setLayoutManager(packLayoutManager);
         packRecyclerView.getViewTreeObserver().addOnGlobalLayoutListener(this::recalculateColumnCount);
     }

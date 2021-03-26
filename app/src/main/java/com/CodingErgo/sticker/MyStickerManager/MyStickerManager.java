@@ -49,5 +49,15 @@ public class MyStickerManager {
             return false;
         }
     }
+    public static long GetItemCount(String id){
+        long number;
+        File num = new File(Folders.ContentFolder+id);
+        number = num.listFiles().length;
+        Log.d(TAG, "GetItemCount: "+number);
+        if (number>30){
+            number = 30 ;
+        }
+        return number ;
+    }
 
 }

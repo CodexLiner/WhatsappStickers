@@ -56,7 +56,7 @@ public class MyDownloadManager extends AppCompatActivity {
         try {
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(link));
                 request.setDescription("Sticker's Wale");
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES,name);
+               // request.setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES,name);
                 request.setTitle("Downloading Sticker's");
                 DownloadManager dm = (DownloadManager)this.getApplicationContext().getSystemService(DOWNLOAD_SERVICE);
                 DownLoadId = dm.enqueue(request);

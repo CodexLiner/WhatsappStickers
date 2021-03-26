@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.CodingErgo.sticker.BuildConfig;
+import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
 import com.CodingErgo.sticker.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -92,7 +93,9 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
         packNameTextView.setText(stickerPack.name);
         packPublisherTextView.setText(stickerPack.publisher);
         packTrayIcon.setImageURI(StickerPackLoader.getStickerAssetUri(stickerPack.identifier, stickerPack.trayImageFile));
-        packSizeTextView.setText(Formatter.formatShortFileSize(this, stickerPack.getTotalSize()));
+      //  packSizeTextView.setText(Formatter.formatShortFileSize(this, stickerPack.getTotalSize()));
+        long size = MyStickerManager.GetItemCount(stickerPack.identifier);
+        packSizeTextView.setText(String.valueOf(size)+" Sticker's");
         addButton.setOnClickListener(v -> addStickerPackToWhatsApp(stickerPack.identifier, stickerPack.name));
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(showUpButton);

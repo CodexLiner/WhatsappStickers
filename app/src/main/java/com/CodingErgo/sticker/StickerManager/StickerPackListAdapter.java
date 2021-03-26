@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
 import com.CodingErgo.sticker.R;
 import com.facebook.drawee.view.SimpleDraweeView;
 
@@ -55,7 +56,9 @@ public class StickerPackListAdapter extends RecyclerView.Adapter<StickerPackList
         StickerPack pack = stickerPacks.get(index);
         final Context context = viewHolder.publisherView.getContext();
         viewHolder.publisherView.setText(pack.publisher);
-        viewHolder.filesizeView.setText(Formatter.formatShortFileSize(context, pack.getTotalSize()));
+       // viewHolder.filesizeView.setText(Formatter.formatShortFileSize(context, pack.getTotalSize()));
+        long size = MyStickerManager.GetItemCount(pack.identifier);
+        viewHolder.filesizeView.setText(String.valueOf(size)+ " Sticker's");
 
         viewHolder.titleView.setText(pack.name);
         viewHolder.container.setOnClickListener(view -> {

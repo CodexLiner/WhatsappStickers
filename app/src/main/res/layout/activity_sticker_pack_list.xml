@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D0F2FCFD"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".StickerManager.StickerPackListActivity"
     tools:showIn="@layout/activity_sticker_pack_list">
@@ -34,7 +35,7 @@
         tools:text="@string/error_message" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="64dp"
         android:id="@+id/sticker_pack_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -44,7 +45,7 @@
         android:background="@drawable/actionbarshape"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="54dp"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:menu="@menu/bottom_menui"/>

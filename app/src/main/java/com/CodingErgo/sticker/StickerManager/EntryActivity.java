@@ -16,6 +16,7 @@ import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -42,6 +43,8 @@ public class EntryActivity extends BaseActivity {
             progressBar = findViewById(R.id.entry_activity_progress);
             loadListAsyncTask = new LoadListAsyncTask(this);
             loadListAsyncTask.execute();
+        }else {
+
         }
 
     }
@@ -66,9 +69,11 @@ public class EntryActivity extends BaseActivity {
 
     private void showErrorMessage(String errorMessage) {
         progressBar.setVisibility(View.INVISIBLE);
+        Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
         Log.e("EntryActivity", "error fetching sticker packs, " + errorMessage);
         final TextView errorMessageTV = findViewById(R.id.error_message);
-        errorMessageTV.setText(getString(R.string.error_message, errorMessage));
+        // errorMessageTV.setText(getString(R.string.error_message, errorMessage));
+
     }
 
     @Override
