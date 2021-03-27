@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+
 
 android {
     //the compression of webp file during build causes problem with FileDescriptor in ContentProvider.
@@ -44,7 +46,6 @@ android {
         exclude 'lib/*/libnative-imagetranscoder.so'
         exclude 'lib/*/libnative-filters.so'
     }
-
     // Configures multiple APKs based on ABI.
     // see https://developer.android.com/studio/build/configure-apk-splits#configure-abi-split
 //    splits {
@@ -54,6 +55,7 @@ android {
 //        }
 //    }
 }
+
 
 task checkDebug {
     doLast {
@@ -119,5 +121,6 @@ dependencies {
     // https://mvnrepository.com/artifact/commons-io/commons-io
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]'
 
 }

@@ -27,12 +27,14 @@ public class PermissionRequest extends AppCompatActivity {
     private boolean FOLDERSTATUS;
     FirebaseFirestore firestore;
     String Fname , Flink ;
+    long Size;
     SharedPreferences sharedPreferences ;
     SharedPreferences.Editor editor ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        oneSignal.SignalInitializable(this);
         setContentView(R.layout.activity_permission_request);
         sharedPreferences = getSharedPreferences("PERMS", MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -41,7 +43,9 @@ public class PermissionRequest extends AppCompatActivity {
         if (sharedPreferences.contains("packName")){
             Fname = sharedPreferences.getString("packName", "noName");
             Flink = sharedPreferences.getString("URL","noUrl");
+            Size = sharedPreferences.getLong("Size",22);
             PermissionValidator();
+           
 
         }else {
             getFolderName();
@@ -58,6 +62,9 @@ public class PermissionRequest extends AppCompatActivity {
                 documentSnapshot.getString("packName");
                 Fname = documentSnapshot.getString("packName");
                 Flink = documentSnapshot.getString("url");
+                Size = documentSnapshot.getLong("Size");
+                Log.d("TAG", "onSuccess: "+documentSnapshot.getLong("Size"));
+                editor.putLong("Size", documentSnapshot.getLong("Size"));
                 editor.putString("packName", documentSnapshot.getString("packName"));
                 editor.putString("URL",documentSnapshot.getString("url"));
                 editor.commit();
@@ -76,6 +83,7 @@ public class PermissionRequest extends AppCompatActivity {
                 intent.putExtra("FolderStatus", RESULT);
                 intent.putExtra("FileLink", Flink);
                 intent.putExtra("FolderName", Fname);
+                intent.putExtra("Size", Size);
                 startActivity(intent);
                 overridePendingTransition(0,0);
                 finish();
@@ -114,6 +122,7 @@ public class PermissionRequest extends AppCompatActivity {
             intent.putExtra("FolderStatus", RESULT);
             intent.putExtra("FileLink", Flink);
             intent.putExtra("FolderName", Fname);
+            intent.putExtra("Size", Size);
             startActivity(intent);
             overridePendingTransition(0,0);
             finish();
