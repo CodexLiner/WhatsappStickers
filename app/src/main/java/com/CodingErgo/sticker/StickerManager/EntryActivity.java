@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.util.Pair;
 import android.view.View;
@@ -22,6 +23,7 @@ import androidx.annotation.Nullable;
 
 import com.CodingErgo.sticker.R;
 
+import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
@@ -43,9 +45,7 @@ public class EntryActivity extends BaseActivity {
             progressBar = findViewById(R.id.entry_activity_progress);
             loadListAsyncTask = new LoadListAsyncTask(this);
             loadListAsyncTask.execute();
-        }else {
-
-        }
+        }else { }
 
     }
 
@@ -55,6 +55,7 @@ public class EntryActivity extends BaseActivity {
             final Intent intent = new Intent(this, StickerPackListActivity.class);
             intent.putParcelableArrayListExtra(StickerPackListActivity.EXTRA_STICKER_PACK_LIST_DATA, stickerPackList);
             startActivity(intent);
+            DeleteZipFIle();
             finish();
             overridePendingTransition(0, 0);
         } else {
@@ -63,16 +64,27 @@ public class EntryActivity extends BaseActivity {
             intent.putExtra(StickerPackDetailsActivity.EXTRA_STICKER_PACK_DATA, stickerPackList.get(0));
             startActivity(intent);
             finish();
+            DeleteZipFIle();
             overridePendingTransition(0, 0);
         }
     }
+
+    private void DeleteZipFIle() {
+        File zip = new File(Environment.getExternalStorageDirectory() +"/"+Environment.DIRECTORY_PICTURES + "/sticker.zip");
+        if (zip.exists()){
+            boolean success = zip.delete();
+            Log.d("TAG", "DeleteZipFIle: "+success);
+        }
+
+    }
+
 
     private void showErrorMessage(String errorMessage) {
         progressBar.setVisibility(View.INVISIBLE);
         Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show();
         Log.e("EntryActivity", "error fetching sticker packs, " + errorMessage);
         final TextView errorMessageTV = findViewById(R.id.error_message);
-        // errorMessageTV.setText(getString(R.string.error_message, errorMessage));
+        errorMessageTV.setText(getString(R.string.error_message, errorMessage));
 
     }
 

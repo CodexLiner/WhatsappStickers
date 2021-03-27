@@ -70,6 +70,7 @@ public class PermissionRequest extends AppCompatActivity {
     private void PermissionValidator() {
         if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
             boolean RESULT = CheckDir("sticker");
+            Log.d("TAG", "PermissionValidator: "+RESULT);
             if (RESULT){
                 Intent intent = new Intent(PermissionRequest.this , MyDownloadManager.class);
                 intent.putExtra("FolderStatus", RESULT);
@@ -93,12 +94,13 @@ public class PermissionRequest extends AppCompatActivity {
              Log.d("TAG", "CheckDirIf: "+FOLDERSTATUS);
              return FOLDERSTATUS = false;
         }else {
-            File checkFile = new File(Folders.ContentFolder + dir_name);
-            if (!checkFile.exists()){
-                FOLDERSTATUS = checkFile.mkdirs();
-                Log.d("TAG", "CheckDirELSE: "+FOLDERSTATUS);
+            if (DirName.isDirectory() && DirName.listFiles().length <22){
+                DirName.delete();
+                return FOLDERSTATUS = false;
+            }else {
+                return FOLDERSTATUS = true;
             }
-            return true;
+
         }
     }
 

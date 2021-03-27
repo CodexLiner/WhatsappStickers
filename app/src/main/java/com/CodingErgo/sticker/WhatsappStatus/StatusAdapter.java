@@ -86,7 +86,7 @@ public class StatusAdapter extends  RecyclerView.Adapter<StatusAdapter.Holder>{
                 try {
                     if (!dir.isDirectory()){ dir.mkdir(); dir.mkdir(); }
                     FileUtils.copyFileToDirectory(src , dir);
-                    Toast.makeText(context, "Saved to Sticker's Wale", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Saved to Downloads", Toast.LENGTH_SHORT).show();
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(context, "Downloaded Faild"+e, Toast.LENGTH_SHORT).show();
@@ -134,12 +134,12 @@ public class StatusAdapter extends  RecyclerView.Adapter<StatusAdapter.Holder>{
                 save.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+Environment.DIRECTORY_DCIM);
+                        File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+Environment.DIRECTORY_DOWNLOADS+"/Sticker's Wale");
                         File src = new File(model.getPath());
                         try{
                             if (!dir.isDirectory()){ dir.mkdir(); dir.mkdir(); }
                             FileUtils.copyFileToDirectory(src , dir);
-                            Toast.makeText(holder.status.getContext(), "Saved to Gallery", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(holder.status.getContext(), "Saved to Downloads", Toast.LENGTH_SHORT).show();
                         }catch (Exception e){
                             Toast.makeText(holder.status.getContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
                             Log.d(TAG, "onClickSaveFile: "+e);

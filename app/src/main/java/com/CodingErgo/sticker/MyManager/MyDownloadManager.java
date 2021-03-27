@@ -46,11 +46,9 @@ public class MyDownloadManager extends AppCompatActivity {
            File DirName = new File(Folders.ContentFolder + DownloadName);
            if (!DirName.isDirectory()){
                boolean success = DirName.mkdirs();
-               if (success){
-                   RESULT = DownloadZip(DownloadName+".zip", DownLoadLink );
-               }
                Log.d("TAG", "ONFOLDERCREATE: "+success);
            }
+           RESULT = DownloadZip(DownloadName+".zip", DownLoadLink );
        }
     }
 
@@ -58,7 +56,7 @@ public class MyDownloadManager extends AppCompatActivity {
         try {
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(link));
                 request.setDescription("Sticker's Wale");
-               // request.setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES,name);
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES,name);
                 request.setTitle("Downloading Sticker's");
                 DownloadManager dm = (DownloadManager)this.getApplicationContext().getSystemService(DOWNLOAD_SERVICE);
                 DownLoadId = dm.enqueue(request);

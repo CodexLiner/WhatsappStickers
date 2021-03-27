@@ -9,10 +9,12 @@
 package com.CodingErgo.sticker.StickerManager;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
@@ -103,10 +105,16 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
             public void onClick(View v) {
                 Dialog dialog = new Dialog(stickerPreviewViewHolder.itemView.getContext());
                 dialog.setContentView(R.layout.stickerpre);
+                WindowManager windowManager = (WindowManager) stickerPreviewViewHolder.itemView.getContext().getSystemService(Context.WINDOW_SERVICE);
+                Display display = windowManager.getDefaultDisplay();
+                Point size = new Point();
+                display.getSize(size);
+                int wid = size.x ;
+                int hei =1000;
                 WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
                 layoutParams.copyFrom(dialog.getWindow().getAttributes());
-                layoutParams.height = 1200;
-                layoutParams.width = 1000;
+                layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                layoutParams.width =wid;
                 dialog.getWindow().setAttributes(layoutParams);
                 dialog.show();
                 try{
