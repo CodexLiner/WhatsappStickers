@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.CodingErgo.sticker.Constants.Folders;
@@ -19,6 +20,9 @@ import com.CodingErgo.sticker.StickerManager.EntryActivity;
 
 import java.io.File;
 import java.net.URI;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MyDownloadManager extends AppCompatActivity {
     boolean IntentResult ;
@@ -26,6 +30,7 @@ public class MyDownloadManager extends AppCompatActivity {
     boolean DownloadResult;
     long DownLoadId;
     String DownloadName , DownLoadLink;
+    TextView StickerLoadidText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +39,9 @@ public class MyDownloadManager extends AppCompatActivity {
         IntentResult = getIntent().getBooleanExtra("FolderStatus", false);
         DownLoadLink = getIntent().getStringExtra("FileLink");
         DownloadName = getIntent().getStringExtra("FolderName");
+        StickerLoadidText = findViewById(R.id.StickerLoadidText);
+        RunnTV();
+       // RunnableHandler.TextViewChanger(this ,StickerLoadidText);
        if (IntentResult){
            Intent intent = new Intent(MyDownloadManager.this , EntryActivity.class);
            intent.putExtra("EntryResult", true);
@@ -42,7 +50,7 @@ public class MyDownloadManager extends AppCompatActivity {
            finish();
            Log.d("TAG", "downloadRES: "+IntentResult);
        }else {
-           Toast.makeText(this, "Sticker packs are Downloading\nDo not close app", Toast.LENGTH_SHORT).show();
+          // Toast.makeText(this, "Sticker packs are Downloading\nDo not close app", Toast.LENGTH_SHORT).show();
            File DirName = new File(Folders.ContentFolder + DownloadName);
            if (!DirName.isDirectory()){
                boolean success = DirName.mkdirs();
@@ -50,6 +58,31 @@ public class MyDownloadManager extends AppCompatActivity {
            }
            RESULT = DownloadZip(DownloadName+".zip", DownLoadLink );
        }
+    }
+
+    private void RunnTV() {
+
+            final Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        while (!isInterrupted()) {
+                            Thread.sleep(5000);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                            StickerLoadidText.setText("It's Almost Done");
+                                }
+                            });
+                        }
+                    } catch (InterruptedException e) {
+                        Log.d("TAG", "Threadrun: "+e);
+                    }
+                }
+            };
+
+            thread.start();
+
     }
 
     private boolean DownloadZip(String name, String link) {

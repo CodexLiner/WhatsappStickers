@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.CodingErgo.sticker.MyManager.PermissionRequest;
 import com.CodingErgo.sticker.R;
 
 import java.io.File;
@@ -85,6 +86,12 @@ public class EntryActivity extends BaseActivity {
         Log.e("EntryActivity", "error fetching sticker packs, " + errorMessage);
         final TextView errorMessageTV = findViewById(R.id.error_message);
         errorMessageTV.setText(getString(R.string.error_message, errorMessage));
+        if (dResult){
+            startActivity(new Intent(getApplicationContext(), PermissionRequest.class));
+            overridePendingTransition(0,0);
+            System.exit(1);
+        }
+
 
     }
 

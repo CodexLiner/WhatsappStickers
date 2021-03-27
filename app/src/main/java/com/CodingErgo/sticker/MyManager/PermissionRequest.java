@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.CodingErgo.sticker.Constants.Folders;
 import com.CodingErgo.sticker.R;
+import com.CodingErgo.sticker.StickerManager.EntryActivity;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -45,7 +46,7 @@ public class PermissionRequest extends AppCompatActivity {
             Flink = sharedPreferences.getString("URL","noUrl");
             Size = sharedPreferences.getLong("Size",22);
             PermissionValidator();
-           
+
 
         }else {
             getFolderName();
@@ -78,7 +79,17 @@ public class PermissionRequest extends AppCompatActivity {
         if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
             boolean RESULT = CheckDir("sticker");
             Log.d("TAG", "PermissionValidator: "+RESULT);
-            if (RESULT){
+            if (!RESULT){
+                Intent intent = new Intent(PermissionRequest.this , MyDownloadManager.class);
+                intent.putExtra("FolderStatus", RESULT);
+                intent.putExtra("FileLink", Flink);
+                intent.putExtra("FolderName", Fname);
+                intent.putExtra("Size", Size);
+                startActivity(intent);
+                overridePendingTransition(0,0);
+                finish();
+
+            }else {
                 Intent intent = new Intent(PermissionRequest.this , MyDownloadManager.class);
                 intent.putExtra("FolderStatus", RESULT);
                 intent.putExtra("FileLink", Flink);
@@ -102,7 +113,7 @@ public class PermissionRequest extends AppCompatActivity {
              Log.d("TAG", "CheckDirIf: "+FOLDERSTATUS);
              return FOLDERSTATUS = false;
         }else {
-            if (DirName.isDirectory() && DirName.listFiles().length <22){
+            if (DirName.isDirectory() && DirName.listFiles().length < Size){
                 DirName.delete();
                 return FOLDERSTATUS = false;
             }else {
@@ -116,7 +127,7 @@ public class PermissionRequest extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == 0 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(this, "PERMISSION_GRANTED" , Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "PERMISSION_GRANTED" , Toast.LENGTH_SHORT).show();
             boolean RESULT = CheckDir("dir_name");
             Intent intent = new Intent(PermissionRequest.this , MyDownloadManager.class);
             intent.putExtra("FolderStatus", RESULT);
