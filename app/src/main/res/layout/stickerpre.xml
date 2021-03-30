@@ -25,11 +25,11 @@
             android:id="@+id/stickerprelay"
             android:layout_width="match_parent"
             android:layout_height="200dp">
-            <pl.droidsonroids.gif.GifImageView
+            <com.facebook.drawee.view.SimpleDraweeView
                 android:layout_gravity="center"
                 android:id="@+id/stickerpreimage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="190dp"
+                android:layout_height="190dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"

@@ -65,7 +65,7 @@
                 android:background="@drawable/buttonshape"
                 android:layout_width="100dp"
                 android:layout_height="55dp"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:text="Save"/>
             <Button
                 android:layout_marginEnd="5dp"

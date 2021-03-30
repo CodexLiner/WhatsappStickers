@@ -3,6 +3,7 @@ package com.CodingErgo.sticker.MyStickerManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
@@ -13,6 +14,8 @@ import com.CodingErgo.sticker.StickerManager.StickerPack;
 import com.CodingErgo.sticker.StickerManager.StickerPackLoader;
 import com.CodingErgo.sticker.StickerManager.StickerPackValidator;
 import com.bumptech.glide.load.engine.Initializable;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
 
 import org.apache.commons.io.FileUtils;
 
@@ -78,6 +81,13 @@ public class MyStickerManager {
            return null;
        }
 
+    }
+    public static DraweeController DraweeImageView(Context context , Uri uri){
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setUri(uri)
+                .setAutoPlayAnimations(true)
+                .build();
+        return controller;
     }
 
 }

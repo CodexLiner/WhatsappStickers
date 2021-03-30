@@ -35,6 +35,7 @@ import com.CodingErgo.sticker.R;
 import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.DraweeView;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import org.apache.commons.io.FileUtils;
@@ -122,9 +123,13 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                 dialog.show();
                 try{
                  final  Uri uri = StickerPackLoader.getStickerAssetUri(stickerPack.identifier, stickerPack.getStickers().get(i).imageFileName);
-                  GifImageView imageView = dialog.findViewById(R.id.stickerpreimage);
+                  DraweeView imageView = dialog.findViewById(R.id.stickerpreimage);
                   ImageView cancleDialog = dialog.findViewById(R.id.cancleDialog);
-                  imageView.setImageURI(uri);
+                  DraweeController controller = Fresco.newDraweeControllerBuilder()
+                          .setUri(uri)
+                          .setAutoPlayAnimations(true)
+                          .build();
+                  imageView.setController(controller);
                   Button share , save ;
                   save = dialog.findViewById(R.id.dialogSave);
                   share = dialog.findViewById(R.id.dialogShare);
