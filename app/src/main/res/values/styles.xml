@@ -8,6 +8,17 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="actionBarTheme">@style/MyApp.ActionBarTheme</item>
     </style>
+    <style name="Theme.BottomMaterial" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="actionBarTheme">@style/MyApp.ActionBarTheme</item>
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryVariant">@color/colorPrimary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/main2</item>
+        <item name="colorSecondaryVariant">@color/common_google_signin_btn_text_dark_default</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/main1</item>
+        <!-- Customize your theme here. -->
+    </style>
     <style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -27,7 +38,6 @@
     <style name="MyApp.ActionBarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
         <item name="colorControlNormal">@color/actionBarArrowColor</item>
     </style>
-
 
     <style name="StickerPreviewButtonText" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:textColor">@android:color/white</item>

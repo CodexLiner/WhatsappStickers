@@ -13,6 +13,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -20,9 +21,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
+import com.CodingErgo.sticker.NewStickerManager.GalleryView;
 import com.CodingErgo.sticker.R;
 import com.CodingErgo.sticker.WhatsappStatus.status;
+import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -39,6 +43,9 @@ public class StickerPackListActivity extends AddStickerPackActivity {
     private StickerPackListAdapter allStickerPacksListAdapter;
     private WhiteListCheckAsyncTask whiteListCheckAsyncTask;
     private ArrayList<StickerPack> stickerPackList;
+    //myVariables
+    BottomAppBar bottomAppBar ;
+    FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,11 @@ public class StickerPackListActivity extends AddStickerPackActivity {
         packRecyclerView = findViewById(R.id.sticker_pack_list);
         bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.getMenu().getItem(2).setIcon(R.drawable.playbtn);
+        bottomAppBar = findViewById(R.id.bottomBar);
+        floatingActionButton = findViewById(R.id.FabBtn);
+       // bottomAppBar.setBackgroundColor(getResources().getColor(R.color.main2));
         bottomNavigationView.setSelectedItemId(R.id.homeMenu);
+        bottomNavigationView.setBackground(null);
         stickerPackList = getIntent().getParcelableArrayListExtra(EXTRA_STICKER_PACK_LIST_DATA);
         stickerPackList = MyStickerManager.StickerLoader(this);
 
@@ -64,6 +75,13 @@ public class StickerPackListActivity extends AddStickerPackActivity {
     }
 
     private void BottomNavTest() {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), GalleryView.class));
+                overridePendingTransition(0,0);
+            }
+        });
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -89,6 +107,12 @@ public class StickerPackListActivity extends AddStickerPackActivity {
             whiteListCheckAsyncTask.execute(stickerPackList.toArray(new StickerPack[0]));
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+//        return;
     }
 
     @Override

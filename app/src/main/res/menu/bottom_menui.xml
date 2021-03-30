@@ -4,7 +4,9 @@
         android:icon="@drawable/my_home"
         android:title="Home"
         android:tooltipText="Home"/>
+
     <item android:id="@+id/statusMenu2" android:enabled="false"/>
+
     <item android:id="@+id/statusMenu" android:enabled="true"
         android:icon="@drawable/playbtn2"
         android:title="Status"

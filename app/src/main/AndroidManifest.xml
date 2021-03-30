@@ -27,7 +27,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TestPackage.testAcitivity"></activity>
+        <activity android:name=".NewStickerManager.GalleryView"></activity>
+        <activity android:name=".TestPackage.testAcitivity" />
         <activity
             android:name=".MyManager.MyDownloadManager"
             android:theme="@style/AppTheme3" />
@@ -40,13 +41,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WhatsappStatus.status" />
+        <activity
+            android:name=".WhatsappStatus.status"
+            android:theme="@style/Theme.BottomMaterial" />
         <activity android:name=".WhatsappStatus.download" />
         <activity
             android:name=".StickerManager.EntryActivity"
-            android:theme="@style/AppTheme2">
-        </activity>
-        <activity android:name=".StickerManager.StickerPackListActivity" />
+            android:theme="@style/AppTheme2"></activity>
+        <activity
+            android:name=".StickerManager.StickerPackListActivity"
+            android:theme="@style/Theme.BottomMaterial" />
         <activity
             android:name=".StickerManager.StickerPackDetailsActivity"
             android:parentActivityName=".StickerManager.StickerPackListActivity"

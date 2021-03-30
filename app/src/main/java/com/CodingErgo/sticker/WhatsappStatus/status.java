@@ -39,6 +39,7 @@ RecyclerView recyclerView ;
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setSelectedItemId(R.id.statusMenu);
+        bottomNavigationView.setBackground(null);
         bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.my_home2);
         Bottomnavtest();
         recyclerView.setHasFixedSize(true);
