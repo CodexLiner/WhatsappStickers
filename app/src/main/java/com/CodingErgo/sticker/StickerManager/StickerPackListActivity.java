@@ -54,6 +54,7 @@ public class StickerPackListActivity extends AddStickerPackActivity {
        if (stickerPackList!=null){
            stickerPackList = MyStickerManager.StickerLoader(this);
            showStickerPackList(stickerPackList);
+            MyStickerManager.deleteStickerZip();
        }
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getResources().getQuantityString(R.plurals.title_activity_sticker_packs_list, stickerPackList.size()));

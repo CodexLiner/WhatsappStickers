@@ -18,6 +18,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
@@ -43,19 +44,20 @@ public class StickerPackInfoActivity extends BaseActivity {
         final String email = getIntent().getStringExtra(StickerPackDetailsActivity.EXTRA_STICKER_PACK_EMAIL);
         final String privacyPolicy = getIntent().getStringExtra(StickerPackDetailsActivity.EXTRA_STICKER_PACK_PRIVACY_POLICY);
         final String licenseAgreement = getIntent().getStringExtra(StickerPackDetailsActivity.EXTRA_STICKER_PACK_LICENSE_AGREEMENT);
-        final TextView trayIcon = findViewById(R.id.tray_icon);
+        final ImageView trayIcon = findViewById(R.id.tray_icon);
         try {
             final InputStream inputStream = getContentResolver().openInputStream(Uri.parse(trayIconUriString));
             final BitmapDrawable trayDrawable = new BitmapDrawable(getResources(), inputStream);
             final Drawable emailDrawable = getDrawableForAllAPIs(R.drawable.sticker_3rdparty_email);
             trayDrawable.setBounds(new Rect(0, 0, emailDrawable.getIntrinsicWidth(), emailDrawable.getIntrinsicHeight()));
             if (Build.VERSION.SDK_INT > 17) {
-                trayIcon.setCompoundDrawablesRelative(trayDrawable, null, null, null);
+//                trayIcon.setCompoundDrawablesRelative(trayDrawable, null, null, null);
+                  trayIcon.setImageURI(Uri.parse(trayIconUriString));
             } else {
                 if (ViewCompat.getLayoutDirection(trayIcon) == ViewCompat.LAYOUT_DIRECTION_LTR) {
-                    trayIcon.setCompoundDrawables(null, null, trayDrawable, null);
+                   // trayIcon.setCompoundDrawables(null, null, trayDrawable, null);
                 } else {
-                    trayIcon.setCompoundDrawables(trayDrawable, null, null, null);
+                   // trayIcon.setCompoundDrawables(trayDrawable, null, null, null);
                 }
             }
         } catch (FileNotFoundException e) {

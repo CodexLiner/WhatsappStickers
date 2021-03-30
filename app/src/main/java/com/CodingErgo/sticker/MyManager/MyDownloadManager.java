@@ -73,7 +73,7 @@ public class MyDownloadManager extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                            StickerLoadidText.setText("It's Almost Done wait few more seconds");
+                            StickerLoadidText.setText("We're Getting Sticker's Ready for you");
                                 }
                             });
                         }
@@ -84,6 +84,7 @@ public class MyDownloadManager extends AppCompatActivity {
             };
 
             thread.start();
+
 
     }
 
@@ -106,11 +107,11 @@ public class MyDownloadManager extends AppCompatActivity {
                             DownloadResult = ZipManager.ZipExtractor(Src.toString() , Dest.toString());
                             Log.d("TAG", "downloadRES: "+DownloadResult);
                             if (DownloadResult){
-                                Intent intent2 = new Intent(MyDownloadManager.this , StickerPackListActivity.class);
+                                Intent intent2 = new Intent(MyDownloadManager.this , PermissionRequest.class);
                                 intent2.putExtra("EntryResult", DownloadResult);
                                 startActivity(intent2);
                                 overridePendingTransition(0,0);
-                                finish();
+                                System.exit(1);
                             }
 
                         }else { }

@@ -14,8 +14,8 @@ android {
         applicationId "com.codingergo.stickermaker"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 3
-        versionName "1.1.0"
+        versionCode 4
+        versionName "2.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         def contentProviderAuthority = applicationId + ".stickercontentprovider"
         // Creates a placeholder property to use in the manifest.

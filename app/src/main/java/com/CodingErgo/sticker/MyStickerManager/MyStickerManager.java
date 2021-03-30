@@ -61,7 +61,7 @@ public class MyStickerManager {
     public static long GetItemCount(String id){
         long number;
         File num = new File(Folders.ContentFolder+id);
-        number = num.listFiles().length;
+        number = num.listFiles().length -1;
         Log.d(TAG, "GetItemCount: "+number);
         if (number>30){
             number = 30 ;
@@ -88,6 +88,13 @@ public class MyStickerManager {
                 .setAutoPlayAnimations(true)
                 .build();
         return controller;
+    }
+    public static void deleteStickerZip(){
+        File file = new File(Environment.getExternalStorageDirectory() +"/"+ Environment.DIRECTORY_PICTURES+"/"+"sticker.zip");
+        if (file.exists()){
+            boolean success = file.delete();
+            Log.d(TAG, "deleteStickerZip: "+success);
+        }
     }
 
 }

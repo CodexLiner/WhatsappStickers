@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/infoPageBackgroundColor"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:paddingTop="8dp"
     tools:context=".StickerManager.StickerPackInfoActivity">
 
     <LinearLayout
@@ -13,15 +12,33 @@
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:orientation="vertical">
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tray_icon"
-            style="@style/InfoButtonStyle"
-            android:clickable="false"
-            android:text="@string/info_screen_tray_icon"
-            android:textColor="#B9B9B9"
-            tools:drawableLeft="@drawable/sticker_3rdparty_web"
-            tools:drawableStart="@drawable/sticker_3rdparty_web" />
+            <ImageView
+                android:background="@drawable/buttonshape2"
+                android:id="@+id/tray_icon"
+                style="@style/InfoButtonStyle"
+                android:clickable="false"
+                android:src="@drawable/ll2"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="start|center"
+                android:layout_height="150dp"
+                android:layout_width="150dp" />
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:height="25sp"
+                android:gravity="center"
+                android:text="@string/tray_image_content_description" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/view_webpage"
