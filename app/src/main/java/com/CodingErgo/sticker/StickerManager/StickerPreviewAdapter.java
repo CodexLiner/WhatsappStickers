@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
 import com.CodingErgo.sticker.R;
+import com.bumptech.glide.Glide;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -40,6 +41,8 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+
+import pl.droidsonroids.gif.GifImageView;
 
 import static android.content.ContentValues.TAG;
 
@@ -119,7 +122,7 @@ public class StickerPreviewAdapter extends RecyclerView.Adapter<StickerPreviewVi
                 dialog.show();
                 try{
                  final  Uri uri = StickerPackLoader.getStickerAssetUri(stickerPack.identifier, stickerPack.getStickers().get(i).imageFileName);
-                  ImageView imageView = dialog.findViewById(R.id.stickerpreimage);
+                  GifImageView imageView = dialog.findViewById(R.id.stickerpreimage);
                   ImageView cancleDialog = dialog.findViewById(R.id.cancleDialog);
                   imageView.setImageURI(uri);
                   Button share , save ;

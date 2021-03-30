@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape android:shape="rectangle"  xmlns:android="http://schemas.android.com/apk/res/android">
 <!--    <padding android:bottom="5dp" android:left="5dp" android:right="5dp" android:top="5dp"/>-->
-    <gradient android:startColor="@color/main1" android:endColor="@color/main2" android:type="linear"/>
+<!--    <gradient android:startColor="@color/main1" android:endColor="@color/main2" android:type="sweep"/>-->
+    <solid android:color="@color/main1"/>
 </shape>

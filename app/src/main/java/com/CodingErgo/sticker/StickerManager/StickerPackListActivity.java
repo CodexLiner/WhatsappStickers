@@ -11,6 +11,7 @@ package com.CodingErgo.sticker.StickerManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
 import com.CodingErgo.sticker.R;
 import com.CodingErgo.sticker.WhatsappStatus.status;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -44,9 +46,15 @@ public class StickerPackListActivity extends AddStickerPackActivity {
         setContentView(R.layout.activity_sticker_pack_list);
         packRecyclerView = findViewById(R.id.sticker_pack_list);
         bottomNavigationView = findViewById(R.id.bottomNav);
+        bottomNavigationView.getMenu().getItem(2).setIcon(R.drawable.playbtn);
         bottomNavigationView.setSelectedItemId(R.id.homeMenu);
         stickerPackList = getIntent().getParcelableArrayListExtra(EXTRA_STICKER_PACK_LIST_DATA);
-        showStickerPackList(stickerPackList);
+        stickerPackList = MyStickerManager.StickerLoader(this);
+
+       if (stickerPackList!=null){
+           stickerPackList = MyStickerManager.StickerLoader(this);
+           showStickerPackList(stickerPackList);
+       }
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getResources().getQuantityString(R.plurals.title_activity_sticker_packs_list, stickerPackList.size()));
         }
@@ -76,7 +84,10 @@ public class StickerPackListActivity extends AddStickerPackActivity {
     protected void onResume() {
         super.onResume();
         whiteListCheckAsyncTask = new WhiteListCheckAsyncTask(this);
-        whiteListCheckAsyncTask.execute(stickerPackList.toArray(new StickerPack[0]));
+        if (whiteListCheckAsyncTask!=null){
+            whiteListCheckAsyncTask.execute(stickerPackList.toArray(new StickerPack[0]));
+        }
+
     }
 
     @Override

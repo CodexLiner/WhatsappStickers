@@ -63,12 +63,12 @@
 
         <ImageView
             android:id="@+id/sticker_pack_animation_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:layout_marginLeft="4dp"
             android:contentDescription="@string/sticker_pack_animation_indicator"
-            android:src="@drawable/animated_pack_indicator"
+            android:src="@drawable/gif"
             app:layout_constraintBottom_toBottomOf="@+id/pack_name"
             app:layout_constraintStart_toEndOf="@+id/pack_name"
             app:layout_constraintTop_toTopOf="@+id/pack_name"
@@ -161,17 +161,19 @@
             android:orientation="vertical">
 
             <FrameLayout
+                android:layout_margin="5dp"
                 android:id="@+id/add_to_whatsapp_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="#1ebea5"
+                android:background="@drawable/buttonshape_main"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_margin="2.5dp"
                     style="@style/StickerPreviewButtonText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -188,31 +190,33 @@
 
             </FrameLayout>
             <FrameLayout
+                android:layout_margin="5dp"
                 android:visibility="gone"
                 android:id="@+id/added_to_whatsapp_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="@color/main1"
+                android:background="@drawable/buttonshape_main2"
                 android:clickable="true"
                 android:focusable="true"
                 android:foreground="?attr/selectableItemBackgroundBorderless"
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_margin="2.5dp"
                     style="@style/StickerPreviewButtonText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"
                     android:clickable="false"
-                    android:drawableStart="@drawable/ic_baseline_share_24"
+                    android:drawableStart="@drawable/my_share"
                     android:drawableTint="@color/ic_launcher_background"
-                    android:drawableLeft="@drawable/ic_baseline_share_24"
+                    android:drawableLeft="@drawable/my_share"
                     android:drawablePadding="8dp"
                     android:focusable="false"
                     android:foreground="@android:color/transparent"
-                    android:text="Share App With Friends" />
+                    android:text="Share With Friends" />
 
 
             </FrameLayout>
@@ -227,6 +231,8 @@
         </LinearLayout>
  </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:paddingStart="55dp"
+        android:paddingEnd="55dp"
         android:id="@+id/bottomNav"
         android:background="@drawable/actionbarshape"
         android:layout_gravity="bottom"

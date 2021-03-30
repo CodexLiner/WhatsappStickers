@@ -1,5 +1,6 @@
 package com.CodingErgo.sticker.MyManager;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
@@ -17,6 +18,9 @@ import android.widget.Toast;
 import com.CodingErgo.sticker.Constants.Folders;
 import com.CodingErgo.sticker.R;
 import com.CodingErgo.sticker.StickerManager.EntryActivity;
+import com.CodingErgo.sticker.StickerManager.StickerPack;
+import com.CodingErgo.sticker.StickerManager.StickerPackListActivity;
+import com.CodingErgo.sticker.TestPackage.testAcitivity;
 
 import java.io.File;
 import java.net.URI;
@@ -31,6 +35,7 @@ public class MyDownloadManager extends AppCompatActivity {
     long DownLoadId;
     String DownloadName , DownLoadLink;
     TextView StickerLoadidText;
+    StickerPack stickerPack ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,21 +45,18 @@ public class MyDownloadManager extends AppCompatActivity {
         DownLoadLink = getIntent().getStringExtra("FileLink");
         DownloadName = getIntent().getStringExtra("FolderName");
         StickerLoadidText = findViewById(R.id.StickerLoadidText);
+
         RunnTV();
-       // RunnableHandler.TextViewChanger(this ,StickerLoadidText);
        if (IntentResult){
            Intent intent = new Intent(MyDownloadManager.this , EntryActivity.class);
            intent.putExtra("EntryResult", true);
-           startActivity(intent);
            overridePendingTransition(0,0);
+           startActivity(intent);
            finish();
-           Log.d("TAG", "downloadRES: "+IntentResult);
        }else {
-          // Toast.makeText(this, "Sticker packs are Downloading\nDo not close app", Toast.LENGTH_SHORT).show();
            File DirName = new File(Folders.ContentFolder + DownloadName);
            if (!DirName.isDirectory()){
                boolean success = DirName.mkdirs();
-               Log.d("TAG", "ONFOLDERCREATE: "+success);
            }
            RESULT = DownloadZip(DownloadName+".zip", DownLoadLink );
        }
@@ -67,11 +69,11 @@ public class MyDownloadManager extends AppCompatActivity {
                 public void run() {
                     try {
                         while (!isInterrupted()) {
-                            Thread.sleep(5000);
+                            Thread.sleep(10000);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                            StickerLoadidText.setText("It's Almost Done");
+                            StickerLoadidText.setText("It's Almost Done wait few more seconds");
                                 }
                             });
                         }
@@ -104,11 +106,11 @@ public class MyDownloadManager extends AppCompatActivity {
                             DownloadResult = ZipManager.ZipExtractor(Src.toString() , Dest.toString());
                             Log.d("TAG", "downloadRES: "+DownloadResult);
                             if (DownloadResult){
-                                Intent intent2 = new Intent(MyDownloadManager.this , PermissionRequest.class);
+                                Intent intent2 = new Intent(MyDownloadManager.this , StickerPackListActivity.class);
                                 intent2.putExtra("EntryResult", DownloadResult);
                                 startActivity(intent2);
                                 overridePendingTransition(0,0);
-                                System.exit(1);
+                                finish();
                             }
 
                         }else { }
@@ -123,5 +125,4 @@ public class MyDownloadManager extends AppCompatActivity {
             return false;
         }
     }
-
 }

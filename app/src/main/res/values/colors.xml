@@ -9,8 +9,8 @@
     <color name="animatedStickerIndicator">#66000000</color>
     <color name="white">#ffff</color>
     <color name="black">#000000</color>
-    <color name="main1">#6ea0af</color>
-    <color name="main2">#6da0ae</color>
+    <color name="main1">#CE449E8D</color>
+    <color name="main2">#449E8D</color>
     <color name="main3">#0e1e2f</color>
     <color name="ll3">#0e1e2f</color>
 </resources>

@@ -75,7 +75,9 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
         TextView packNameTextView = findViewById(R.id.pack_name);
         TextView packPublisherTextView = findViewById(R.id.author);
         bottomNavigationView = findViewById(R.id.bottomNav);
-        bottomNavigationView.setSelectedItemId(R.id.homeMenu);
+        bottomNavigationView.setSelected(false);
+        bottomNavigationView.getMenu().getItem(2).setIcon(R.drawable.info);
+        bottomNavigationView.setSelectedItemId(R.id.statusMenu2);
         ImageView packTrayIcon = findViewById(R.id.tray_image);
         TextView packSizeTextView = findViewById(R.id.pack_size);
         SimpleDraweeView expandedStickerView = findViewById(R.id.sticker_details_expanded_sticker);
@@ -125,16 +127,13 @@ public class StickerPackDetailsActivity extends AddStickerPackActivity {
                 switch (item.getItemId()){
                     case R.id.homeMenu :{
                         finish();
-                        overridePendingTransition(0,0);
-                        return true;
+//                        overridePendingTransition(0,0);
+                         return true;
                     }
                     case R.id.statusMenu :{
                                 Uri trayIconUri = StickerPackLoader.getStickerAssetUri(stickerPack.identifier, stickerPack.trayImageFile);
                                 launchInfoActivity(stickerPack.publisherWebsite, stickerPack.publisherEmail, stickerPack.privacyPolicyWebsite, stickerPack.licenseAgreementWebsite, trayIconUri.toString());
                                 return true;
-
-//                        startActivity(new Intent(getApplicationContext(),status.class));
-//                        overridePendingTransition(0,0);
                     }
                 }
                 return false;

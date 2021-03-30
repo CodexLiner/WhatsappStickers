@@ -12,6 +12,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.FileUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.CodingErgo.sticker.Constants.Folders;
@@ -29,6 +31,7 @@ public class PermissionRequest extends AppCompatActivity {
     FirebaseFirestore firestore;
     String Fname , Flink ;
     long Size;
+    ProgressBar progressBar ;
     SharedPreferences sharedPreferences ;
     SharedPreferences.Editor editor ;
 
@@ -41,10 +44,15 @@ public class PermissionRequest extends AppCompatActivity {
         editor = sharedPreferences.edit();
         editor.apply();
         firestore = FirebaseFirestore.getInstance();
+        progressBar = findViewById(R.id.entry_activity_progress);
+        progressBar.setVisibility(View.VISIBLE);
+        FirebaseRunner();
+
         if (sharedPreferences.contains("packName")){
             Fname = sharedPreferences.getString("packName", "noName");
             Flink = sharedPreferences.getString("URL","noUrl");
             Size = sharedPreferences.getLong("Size",22);
+            FirebaseRunner();
             PermissionValidator();
 
 
@@ -53,6 +61,24 @@ public class PermissionRequest extends AppCompatActivity {
         }
 
 
+    }
+
+    private void FirebaseRunner() {
+       DocumentReference documentReference = firestore.collection("Sticker").document("C14aN02hCyHAd7dtjycW");
+       documentReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+           @Override
+           public void onSuccess(DocumentSnapshot documentSnapshot) {
+                       documentSnapshot.getString("packName");
+                       Fname = documentSnapshot.getString("packName");
+                       Flink = documentSnapshot.getString("url");
+                       Size = documentSnapshot.getLong("Size");
+                       Log.d("TAG", "onSuccess: "+documentSnapshot.getLong("Size"));
+                       editor.putLong("Size", documentSnapshot.getLong("Size"));
+                       editor.putString("packName", documentSnapshot.getString("packName"));
+                       editor.putString("URL",documentSnapshot.getString("url"));
+                       editor.commit();
+           }
+       });
     }
 
     private void getFolderName() {
@@ -78,27 +104,14 @@ public class PermissionRequest extends AppCompatActivity {
     private void PermissionValidator() {
         if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
             boolean RESULT = CheckDir("sticker");
-            Log.d("TAG", "PermissionValidator: "+RESULT);
-            if (!RESULT){
-                Intent intent = new Intent(PermissionRequest.this , MyDownloadManager.class);
-                intent.putExtra("FolderStatus", RESULT);
-                intent.putExtra("FileLink", Flink);
-                intent.putExtra("FolderName", Fname);
-                intent.putExtra("Size", Size);
-                startActivity(intent);
-                overridePendingTransition(0,0);
-                finish();
-
-            }else {
-                Intent intent = new Intent(PermissionRequest.this , MyDownloadManager.class);
-                intent.putExtra("FolderStatus", RESULT);
-                intent.putExtra("FileLink", Flink);
-                intent.putExtra("FolderName", Fname);
-                intent.putExtra("Size", Size);
-                startActivity(intent);
-                overridePendingTransition(0,0);
-                finish();
-            }
+            Intent intent = new Intent(PermissionRequest.this , MyDownloadManager.class);
+            intent.putExtra("FolderStatus", RESULT);
+            intent.putExtra("FileLink", Flink);
+            intent.putExtra("FolderName", Fname);
+            intent.putExtra("Size", Size);
+            startActivity(intent);
+            overridePendingTransition(0,0);
+            finish();
         } else {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
 
@@ -109,8 +122,6 @@ public class PermissionRequest extends AppCompatActivity {
     private boolean CheckDir(String dir_name) {
         File DirName = new File(Folders.ContentFolder);
         if (!DirName.isDirectory()){
-//             boolean success = DirName.mkdirs();
-             Log.d("TAG", "CheckDirIf: "+FOLDERSTATUS);
              return FOLDERSTATUS = false;
         }else {
             if (DirName.isDirectory() && DirName.listFiles().length < Size){

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.CodingErgo.sticker.R;
+import com.CodingErgo.sticker.StickerManager.StickerPackListActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.File;
@@ -37,6 +39,7 @@ RecyclerView recyclerView ;
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setSelectedItemId(R.id.statusMenu);
+        bottomNavigationView.getMenu().getItem(0).setIcon(R.drawable.my_home2);
         Bottomnavtest();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2 ));
@@ -114,7 +117,7 @@ RecyclerView recyclerView ;
                     }
                     case R.id.homeMenu :{
                         finish();
-                       // startActivity(new Intent(getApplicationContext(),StickerPackListActivity.class));
+//                       startActivity(new Intent(getApplicationContext(), StickerPackListActivity.class));
                         overridePendingTransition(0,0);
                     }
                 }

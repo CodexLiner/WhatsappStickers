@@ -27,10 +27,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".TestPackage.testAcitivity"></activity>
         <activity
             android:name=".MyManager.MyDownloadManager"
             android:theme="@style/AppTheme3" />
-        <activity android:name=".MyManager.PermissionRequest"
+        <activity
+            android:name=".MyManager.PermissionRequest"
             android:theme="@style/AppTheme2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,7 +44,8 @@
         <activity android:name=".WhatsappStatus.download" />
         <activity
             android:name=".StickerManager.EntryActivity"
-            android:theme="@style/AppTheme2" />
+            android:theme="@style/AppTheme2">
+        </activity>
         <activity android:name=".StickerManager.StickerPackListActivity" />
         <activity
             android:name=".StickerManager.StickerPackDetailsActivity"

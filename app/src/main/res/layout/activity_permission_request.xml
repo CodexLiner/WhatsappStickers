@@ -35,6 +35,7 @@
     </LinearLayout>
 
     <ProgressBar
+        android:indeterminateTint="@color/main3"
         android:id="@+id/entry_activity_progress"
         android:layout_width="50dp"
         android:layout_height="50dp"

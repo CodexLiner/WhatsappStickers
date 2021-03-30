@@ -34,6 +34,8 @@
             android:id="@+id/statusRecyclerView"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:paddingStart="55dp"
+            android:paddingEnd="55dp"
             android:id="@+id/bottomNav"
             android:background="@drawable/actionbarshape"
             android:layout_gravity="bottom"

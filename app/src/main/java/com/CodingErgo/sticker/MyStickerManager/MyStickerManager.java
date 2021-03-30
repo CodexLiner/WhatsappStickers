@@ -1,12 +1,18 @@
 package com.CodingErgo.sticker.MyStickerManager;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Environment;
 import android.util.Log;
 
 import com.CodingErgo.sticker.Constants.Folders;
+import com.CodingErgo.sticker.MyManager.PermissionRequest;
 import com.CodingErgo.sticker.StickerManager.ContentFileParser;
 import com.CodingErgo.sticker.StickerManager.StickerPack;
+import com.CodingErgo.sticker.StickerManager.StickerPackLoader;
+import com.CodingErgo.sticker.StickerManager.StickerPackValidator;
+import com.bumptech.glide.load.engine.Initializable;
 
 import org.apache.commons.io.FileUtils;
 
@@ -58,6 +64,20 @@ public class MyStickerManager {
             number = 30 ;
         }
         return number ;
+    }
+    public static ArrayList<StickerPack> StickerLoader(Context context){
+        ArrayList<StickerPack> stickerPacks ;
+       try{
+           stickerPacks = StickerPackLoader.fetchStickerPacks(context);
+           for (StickerPack stickerPack : stickerPacks){
+               StickerPackValidator.verifyStickerPackValidity(context , stickerPack);
+           }
+           return stickerPacks;
+       }catch (Exception e){
+           Log.d(TAG, "StickerLoaderEce: "+e);
+           return null;
+       }
+
     }
 
 }

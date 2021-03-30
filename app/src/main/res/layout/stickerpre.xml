@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <ImageView
+            android:tint="#F80000"
             android:layout_marginTop="10dp"
             android:padding="5dp"
             android:foreground="?attr/selectableItemBackgroundBorderless"
@@ -16,7 +17,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="end"
-            android:src="@drawable/cancel"/>
+            android:src="@drawable/cancelbtn"/>
         <LinearLayout
             android:gravity="center"
             android:layout_gravity="center"
@@ -24,7 +25,7 @@
             android:id="@+id/stickerprelay"
             android:layout_width="match_parent"
             android:layout_height="200dp">
-            <ImageView
+            <pl.droidsonroids.gif.GifImageView
                 android:layout_gravity="center"
                 android:id="@+id/stickerpreimage"
                 android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
                android:layout_height="wrap_content"
                android:orientation="horizontal">
                <Button
-                   android:drawableTop="@drawable/ic_sharp_save_alt_24"
+                   android:drawableTop="@drawable/my_download"
                    android:drawablePadding="5dp"
                    android:foreground="?attr/selectableItemBackgroundBorderless"
                    android:padding="5dp"
@@ -79,14 +80,14 @@
                    android:padding="5dp"
                    android:id="@+id/dialogShare"
                    android:layout_weight="1"
-                   android:background="@drawable/statushape"
+                   android:background="@drawable/buttonshape2"
                    android:layout_marginTop="25dp"
                    android:layout_marginBottom="25dp"
                    android:layout_marginEnd="10dp"
                    android:layout_marginStart="10dp"
                    android:layout_width="100dp"
                    android:drawablePadding="5dp"
-                   android:drawableTop="@drawable/ic_baseline_share_24"
+                   android:drawableTop="@drawable/my_share"
                    android:layout_height="55dp"
                    android:textColor="@color/actionBarArrowColor"
                    android:text="Share"/>

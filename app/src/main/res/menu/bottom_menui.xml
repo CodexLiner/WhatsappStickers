@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/homeMenu" android:enabled="true"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/my_home"
         android:title="Home"
         android:tooltipText="Home"/>
-
+    <item android:id="@+id/statusMenu2" android:enabled="false"/>
     <item android:id="@+id/statusMenu" android:enabled="true"
-        android:icon="@drawable/ic_baseline_video_library_24"
+        android:icon="@drawable/playbtn2"
         android:title="Status"
         android:tooltipText="Home"/>
 

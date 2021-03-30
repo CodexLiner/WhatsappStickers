@@ -10,6 +10,7 @@ android {
     }
     compileSdkVersion 30
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.codingergo.stickermaker"
         minSdkVersion 21
         targetSdkVersion 30

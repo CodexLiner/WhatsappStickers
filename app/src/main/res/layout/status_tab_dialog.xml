@@ -2,9 +2,9 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:layout_margin="0dp"
     android:layout_height="wrap_content">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,6 +51,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <Button
+                android:drawableTop="@drawable/my_download"
+                android:drawableTint="@color/white"
+                android:drawablePadding="5dp"
                 android:layout_marginStart="5dp"
                 android:layout_marginBottom="2dp"
                 android:layout_marginTop="2dp"
@@ -73,12 +76,12 @@
                 android:padding="5dp"
                 android:id="@+id/dialogShare"
                 android:layout_weight="1"
-                android:background="@drawable/statushape"
+                android:background="@drawable/buttonshape2"
                 android:layout_width="100dp"
                 android:drawablePadding="5dp"
-                android:drawableTop="@drawable/ic_baseline_share_24"
+                android:drawableTop="@drawable/my_share"
                 android:layout_height="55dp"
-                android:textColor="@color/actionBarArrowColor"
+                android:textColor="@color/black"
                 android:text="Share"/>
         </LinearLayout>
     </LinearLayout>
