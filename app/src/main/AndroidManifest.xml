@@ -27,8 +27,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NewStickerManager.ImageErasing.CropImageTool"> </activity>
-        <activity android:theme="@style/AppTheme2" android:name=".NewStickerManager.GalleryView" />
+        <activity android:name=".NewStickerManager.ImageErasing.CroppedImage"></activity>
+        <activity android:name=".NewStickerManager.ImageErasing.CropImageTool"></activity>
+        <activity
+            android:name=".NewStickerManager.GalleryView"
+            android:theme="@style/AppTheme2" />
         <activity android:name=".TestPackage.testAcitivity" />
         <activity
             android:name=".MyManager.MyDownloadManager"
