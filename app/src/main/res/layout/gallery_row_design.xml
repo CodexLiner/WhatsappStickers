@@ -6,6 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <ImageView
+        android:foreground="?attr/selectableItemBackgroundBorderless"
         android:scaleType="centerCrop"
         android:layout_margin="1.5dp"
         android:id="@+id/GalleryImageRow"

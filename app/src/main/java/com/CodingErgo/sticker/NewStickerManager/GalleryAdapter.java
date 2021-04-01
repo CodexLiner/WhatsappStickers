@@ -1,6 +1,7 @@
 package com.CodingErgo.sticker.NewStickerManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.CodingErgo.sticker.NewStickerManager.ImageErasing.CropImageTool;
 import com.CodingErgo.sticker.R;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.Initializable;
 
 import java.util.List;
 
@@ -39,11 +42,12 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.Holder> 
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         String uri = photos.get(position);
         Glide.with(context).load(uri).into(holder.imageView);
-        Log.d(TAG, "onBindViewHolderURI: "+photos.get(position));
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Toast.makeText(context, "URI IS "+photos.get(position), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(holder.imageView.getContext() , CropImageTool.class);
+                intent.putExtra("URI", uri);
+                holder.itemView.getContext().startActivity(intent);
             }
         });
 
