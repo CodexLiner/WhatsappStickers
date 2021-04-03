@@ -10,17 +10,12 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
-import android.graphics.Xfermode;
-import android.hardware.display.DisplayManager;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.WindowManager;
-import android.widget.ImageView;
 
 import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
 import com.CodingErgo.sticker.NewStickerManager.Views.CropImageClass;
-import com.CodingErgo.sticker.NewStickerManager.testView.testView;
 import com.CodingErgo.sticker.R;
 
 import java.io.BufferedInputStream;
@@ -34,7 +29,7 @@ public class EditStickers extends AppCompatActivity {
     BufferedInputStream bf;
     Canvas canvas;
     String URI;
-    testView CropedImage ;
+    StickerEditorView CropedImage ;
     int xInt , yInt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

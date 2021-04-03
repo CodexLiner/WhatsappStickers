@@ -77,7 +77,7 @@ public class CropImageClass extends View implements View.OnTouchListener {
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setPathEffect(new DashPathEffect(new float[]{10,10,10}, 10));
         mPaint.setStrokeWidth(10);
-        mPaint.setColor(Color.BLUE);
+        mPaint.setColor(Color.parseColor("#00bcd4"));
         OnCreate(attrs);
         this.setOnTouchListener(this);
         points = new ArrayList<Point>();
