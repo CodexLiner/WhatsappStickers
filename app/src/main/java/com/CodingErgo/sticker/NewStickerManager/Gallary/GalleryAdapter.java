@@ -1,13 +1,11 @@
-package com.CodingErgo.sticker.NewStickerManager;
+package com.CodingErgo.sticker.NewStickerManager.Gallary;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,11 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.CodingErgo.sticker.NewStickerManager.ImageErasing.CropImageTool;
 import com.CodingErgo.sticker.R;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.Initializable;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.Holder> {
     Context context ;

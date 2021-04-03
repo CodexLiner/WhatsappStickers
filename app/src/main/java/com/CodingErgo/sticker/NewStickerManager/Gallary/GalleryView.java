@@ -1,20 +1,16 @@
-package com.CodingErgo.sticker.NewStickerManager;
+package com.CodingErgo.sticker.NewStickerManager.Gallary;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.CodingErgo.sticker.R;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class GalleryView extends AppCompatActivity {
     GalleryAdapter galleryAdapter;

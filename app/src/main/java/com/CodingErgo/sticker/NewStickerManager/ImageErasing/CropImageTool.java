@@ -2,29 +2,74 @@ package com.CodingErgo.sticker.NewStickerManager.ImageErasing;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.ImageView;
 
+import com.CodingErgo.sticker.NewStickerManager.Views.CropImageClass;
 import com.CodingErgo.sticker.R;
-import com.CodingErgo.sticker.view.CropView;
+
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 
 public class CropImageTool extends AppCompatActivity {
     ImageView  OnlineCrop , ManualCrop, FreeHandCrop;
-    CropView CropImage;
+    CropImageClass cropImageClass ;
+    BufferedInputStream bf ;
+    FileInputStream inputStream;
+   static Bitmap bitmap , ret;
+
     String URI ;
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_image_tool);
         URI = getIntent().getStringExtra("URI");
-        CropImage = findViewById(R.id.CropImage);
-        CropImage.setImageUri(Uri.parse(URI));
-//        CropImage.setImageURI(Uri.parse(URI));
-        //Buttons
         OnlineCrop = findViewById(R.id.OnlineCrop);
         ManualCrop = findViewById(R.id.ManualCrop);
         FreeHandCrop = findViewById(R.id.FreeHandCrop);
+        cropImageClass = findViewById(R.id.CropImage);;
+        try{
+            inputStream = new FileInputStream(URI);
+            bf = new BufferedInputStream(inputStream);
+            bitmap = BitmapFactory.decodeStream(bf);
+            Log.d("TAG", "onCreateHEigh: "+bitmap.getHeight() +"  "+ bitmap.getWidth());
+        }catch (Exception e){
+            Log.d("TAG", "mainBitmap: "+e);
+        }
 
+        BitmapSizeReducer();
     }
+    public void BitmapSizeReducer() {
+            int width = 1024;
+            int height = 1920;
+        Bitmap background = Bitmap.createBitmap((int)width, (int)height, Bitmap.Config.ARGB_8888);
+
+        float originalWidth = bitmap.getWidth();
+        float originalHeight = bitmap.getHeight();
+
+        Canvas canvas = new Canvas(background);
+
+        float scale = width / originalWidth;
+
+        float xTranslation = 0.0f;
+        float yTranslation = (height - originalHeight * scale) / 2.0f;
+
+        Matrix transformation = new Matrix();
+        transformation.postTranslate(xTranslation, yTranslation);
+        transformation.preScale(scale, scale);
+
+        Paint paint = new Paint();
+        paint.setFilterBitmap(true);
+
+        canvas.drawBitmap(bitmap, transformation, paint);
+          cropImageClass.setMainBitmap(background);
+        Log.d("TAG", "onCreateHEight bg: "+background.getHeight() +"  "+ background.getWidth());
+    }
+
+
 }

@@ -3,6 +3,7 @@ package com.CodingErgo.sticker.MyStickerManager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
@@ -29,6 +30,7 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 
 public class MyStickerManager {
+   static Bitmap bmp;
 
     public static List<StickerPack> getStickerPacks(Context context) {
         List<StickerPack> stickerPackList = new ArrayList<>();
@@ -95,6 +97,12 @@ public class MyStickerManager {
             boolean success = file.delete();
             Log.d(TAG, "deleteStickerZip: "+success);
         }
+    }
+    public static void MyBitmap(Bitmap bm){
+        bmp = bm;
+    }
+    public static Bitmap getBitmap(){
+        return bmp;
     }
 
 }

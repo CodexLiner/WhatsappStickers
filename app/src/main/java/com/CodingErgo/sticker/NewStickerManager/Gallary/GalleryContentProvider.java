@@ -1,4 +1,4 @@
-package com.CodingErgo.sticker.NewStickerManager;
+package com.CodingErgo.sticker.NewStickerManager.Gallary;
 
 import android.content.Context;
 import android.database.Cursor;

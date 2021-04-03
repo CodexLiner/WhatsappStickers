@@ -1,18 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="1"
     android:orientation="vertical"
     tools:context=".NewStickerManager.ImageErasing.CroppedImage">
-    <ImageView
-        android:layout_margin="30dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
-        android:baselineAlignBottom="true"
+    <LinearLayout
+        android:baselineAligned="false"
+        android:elevation="1dp"
         android:layout_width="match_parent"
-        android:id="@+id/CroppedImage"
-        android:layout_height="0dp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/GalleryCanc"
+            android:padding="4dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_left_arrow"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginStart="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:alpha="0.8"
+            android:fontFamily="@font/alice"
+            android:gravity="center|start"
+            android:padding="3dp"
+            android:text="Crop Image"
+            android:textColor="@color/black"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|center"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/alice"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="Done"
+            android:textColor="@color/main2"
+            android:textSize="25sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:alpha="0.2"/>
+    <LinearLayout
+        android:id="@+id/linearLay"
+        android:layout_gravity="center"
+        android:background="@drawable/transbg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+     <ImageView
+         android:layout_gravity="center"
+         android:id="@+id/CropImage"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"
+        android:alpha="0.2"/>
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonshape2"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/OnlineCrop"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_magic_wand"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Online"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/alice"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonshape2"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/FreeHandCrop"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_manual"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Manual"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/alice"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonshape2"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/ManualCrop"
+                android:layout_marginTop="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_crop"
+                android:layout_gravity="center"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text="Crop"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:fontFamily="@font/alice"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>

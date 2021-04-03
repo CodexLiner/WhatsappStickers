@@ -11,7 +11,6 @@ package com.CodingErgo.sticker.StickerManager;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -21,7 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
-import com.CodingErgo.sticker.NewStickerManager.GalleryView;
+import com.CodingErgo.sticker.NewStickerManager.Gallary.GalleryView;
 import com.CodingErgo.sticker.R;
 import com.CodingErgo.sticker.WhatsappStatus.status;
 import com.google.android.material.bottomappbar.BottomAppBar;
