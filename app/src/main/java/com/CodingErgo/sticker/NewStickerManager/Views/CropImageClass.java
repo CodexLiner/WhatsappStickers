@@ -17,6 +17,7 @@ import android.graphics.Point;
 import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,6 +34,8 @@ import com.CodingErgo.sticker.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class CropImageClass extends View implements View.OnTouchListener {
     private Paint mPaint;
     public static List<Point> points;
@@ -43,6 +46,8 @@ public class CropImageClass extends View implements View.OnTouchListener {
     boolean isStepTwo = false;
     Bitmap mainBitmap;
     Context mContext;
+    boolean crop;
+    int parceX , parceY;
     int x , y ;
 
 
@@ -118,24 +123,51 @@ public class CropImageClass extends View implements View.OnTouchListener {
          y = (getHeight() - mainBitmap.getHeight()) /2;
          x = (getWidth() - mainBitmap.getWidth()) / 2;
         canvas.drawBitmap(mainBitmap,x , y, null);
-
+        RectF rectF = new RectF();
         Path path = new Path();
         boolean First = true;
-
-        for (int i = 0; i < points.size(); i += 2) {
-            Point point = points.get(i);
-            if (First) {
-                First = false;
-                path.moveTo(point.x, point.y);
-            } else if (i < points.size() - 1) {
-                Point next = points.get(i + 1);
-                path.quadTo(point.x, point.y, next.x, next.y);
-            } else {
-                onClose = points.get(i);
-                path.lineTo(point.x, point.y);
+        if (crop){
+            for (int i = 0; i < points.size(); i += 2) {
+                Point point = points.get(i);
+                if (First) {
+                    First = false;
+                    // path.moveTo(point.x, point.y);
+                    rectF.top = point.y;
+                    rectF.left = point.x;
+                    rectF.bottom = point.y;
+                    rectF.right = point.x;
+                } else if (i < points.size() - 1) {
+                    Point next = points.get(i + 1);
+                    // path.quadTo(point.x, point.y, next.x, next.y);
+                    rectF.top = point.y;
+                    rectF.left = point.x;
+                    parceX = point.x;
+                    parceY = point.y;
+                    Log.d(TAG, "onDrawElse: "+point.x +"and"+ point.y);
+                } else {
+                    onClose = points.get(i);
+                    path.lineTo(point.x, point.y);
+                }
             }
+            canvas.drawRect(rectF, mPaint);
+        }else {
+            for (int i = 0; i < points.size(); i += 2) {
+                Point point = points.get(i);
+                if (First) {
+                    First = false;
+                    path.moveTo(point.x, point.y);
+                } else if (i < points.size() - 1) {
+                    Point next = points.get(i + 1);
+                    path.quadTo(point.x, point.y, next.x, next.y);
+                } else {
+                    onClose = points.get(i);
+                    path.lineTo(point.x, point.y);
+                }
+            }
+            canvas.drawPath(path, mPaint);
         }
-        canvas.drawPath(path, mPaint);
+
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -156,6 +188,9 @@ public class CropImageClass extends View implements View.OnTouchListener {
                     MyStickerManager.MyBitmap(mainBitmap);
                     intent.putExtra("xInt", x);
                     intent.putExtra("yIny",y);
+                    intent.putExtra("parceX", parceX);
+                    intent.putExtra("parceY",parceY);
+                    intent.putExtra("crop", crop);
                     mContext.startActivity(intent);
                 } else {
                     points.add(point);
@@ -185,6 +220,9 @@ public class CropImageClass extends View implements View.OnTouchListener {
                         MyStickerManager.MyBitmap(mainBitmap);
                         intent.putExtra("xInt", x);
                         intent.putExtra("yIny",y);
+                        intent.putExtra("parceX", parceX);
+                        intent.putExtra("parceY",parceY);
+                        intent.putExtra("crop", crop);
                         mContext.startActivity(intent);
                     }
                 }
@@ -212,6 +250,9 @@ public class CropImageClass extends View implements View.OnTouchListener {
             return false;
         }
 
+    }
+    public void ButtonClick(boolean btn){
+        crop = btn;
     }
 
     private void showcropdialog() {

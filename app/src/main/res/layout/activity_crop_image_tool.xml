@@ -82,6 +82,8 @@
         android:layout_width="match_parent"
         android:layout_height="200dp">
      <LinearLayout
+         android:clickable="true"
+         android:foreground="@drawable/click_graound"
          android:layout_margin="10dp"
          android:background="@drawable/buttonshape2"
          android:layout_gravity="center"
@@ -110,6 +112,8 @@
      </LinearLayout>
 
         <LinearLayout
+            android:clickable="true"
+            android:foreground="@drawable/click_graound"
             android:layout_margin="10dp"
             android:background="@drawable/buttonshape2"
             android:layout_gravity="center"
@@ -139,6 +143,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:clickable="true"
+            android:foreground="@drawable/click_graound"
             android:layout_margin="10dp"
             android:background="@drawable/buttonshape2"
             android:layout_gravity="center"

@@ -14,5 +14,6 @@
     <color name="main3">#0e1e2f</color>
     <color name="ll3">#0e1e2f</color>
     <color name="trans">#00000000</color>
+    <color name="active">#42A5F5</color>
 
 </resources>

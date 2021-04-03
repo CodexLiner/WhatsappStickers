@@ -9,6 +9,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.CodingErgo.sticker.NewStickerManager.Views.CropImageClass;
@@ -32,21 +33,40 @@ public class CropImageTool extends AppCompatActivity {
         OnlineCrop = findViewById(R.id.OnlineCrop);
         ManualCrop = findViewById(R.id.ManualCrop);
         FreeHandCrop = findViewById(R.id.FreeHandCrop);
-        cropImageClass = findViewById(R.id.CropImage);;
+        cropImageClass = findViewById(R.id.CropImage);
+        ButtonManager();
+
         try{
+
             inputStream = new FileInputStream(URI);
             bf = new BufferedInputStream(inputStream);
             bitmap = BitmapFactory.decodeStream(bf);
-            Log.d("TAG", "onCreateHEigh: "+bitmap.getHeight() +"  "+ bitmap.getWidth());
-        }catch (Exception e){
-            Log.d("TAG", "mainBitmap: "+e);
-        }
+
+        }catch (Exception ignored){ }
 
         BitmapSizeReducer();
     }
+
+    private void ButtonManager() {
+            FreeHandCrop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cropImageClass.ButtonClick(false);
+                }
+            });
+            ManualCrop.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    cropImageClass.ButtonClick(true);
+                }
+            });
+    }
+
     public void BitmapSizeReducer() {
+
             int width = 1024;
             int height = 1920;
+
         Bitmap background = Bitmap.createBitmap((int)width, (int)height, Bitmap.Config.ARGB_8888);
 
         float originalWidth = bitmap.getWidth();
@@ -67,9 +87,12 @@ public class CropImageTool extends AppCompatActivity {
         paint.setFilterBitmap(true);
 
         canvas.drawBitmap(bitmap, transformation, paint);
-          cropImageClass.setMainBitmap(background);
-        Log.d("TAG", "onCreateHEight bg: "+background.getHeight() +"  "+ background.getWidth());
+        cropImageClass.setMainBitmap(background);
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cropImageClass.invalidate();
+    }
 }
