@@ -1,12 +1,17 @@
 package com.CodingErgo.sticker.NewStickerManager.ImageErasing;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -14,27 +19,40 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
+import com.CodingErgo.sticker.NewStickerManager.EnterText.TextModel;
+import com.CodingErgo.sticker.NewStickerManager.EnterText.TextStyleAdapter;
 import com.CodingErgo.sticker.NewStickerManager.Views.CropImageClass;
 import com.CodingErgo.sticker.R;
 import com.bumptech.glide.load.engine.Initializable;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
 
 public class EditStickers extends AppCompatActivity {
-    LinearLayout BottomSheet , EditText ;
+    LinearLayout BottomSheet , Editt ,AddText ;
+    Dialog dialog;
     Bitmap toSet , toCreate;
     Paint mPaint ;
     Path mPath;
@@ -52,6 +70,7 @@ public class EditStickers extends AppCompatActivity {
         setContentView(R.layout.activity_edit_stickers);
         BottomSheet = findViewById(R.id.BottomSheet);
         CropedImage = findViewById(R.id.CropedImage);
+        AddText = findViewById(R.id.AddText);
         xInt = getIntent().getIntExtra("xInt",0);
         yInt = getIntent().getIntExtra("yInt", 0);
         parceX = getIntent().getIntExtra("parceX",0);
@@ -104,9 +123,77 @@ public class EditStickers extends AppCompatActivity {
         BottomSheet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                BottomSheet(getApplicationContext() );
+                try {
+                    BottomSheet(getApplicationContext() );
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
+        AddText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowEditDialog();
+            }
+        });
+    }
+
+    private void ShowEditDialog() {
+        RecyclerView recyclerView;
+        ImageView CancleDialog ;
+        ImageView DoneText;
+        ArrayList<Object> textList;
+        TextStyleAdapter textStyleAdapter ;
+        TextModel textModel;
+        EditText editText;
+        String [] TextNames = {"Normal" ,  "Basic" ,"Advance" , "Cursive"};
+        dialog = new Dialog(EditStickers.this);
+        dialog.setContentView(R.layout.enter_text_dialog);
+        dialog.setCancelable(true);
+        recyclerView = dialog.findViewById(R.id.TextRecyclerView);
+        CancleDialog = dialog.findViewById(R.id.CancleEditText);
+        DoneText = dialog.findViewById(R.id.DoneEditText);
+        editText = dialog.findViewById(R.id.setText);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this ,LinearLayoutManager.HORIZONTAL,false));
+        textList = new ArrayList<>();
+        TextModel t1 = new TextModel("Normal");
+        TextModel t2 = new TextModel("Basic");
+        TextModel t3 = new TextModel("Advance");
+        TextModel t4 = new TextModel("Nirmala Ui");
+        TextModel t5 = new TextModel("Cursive");
+        TextModel t6 = new TextModel("Monospace");
+        textList.add(t1);
+        textList.add(t2);
+        textList.add(t3);
+        textList.add(t4);
+        textList.add(t5);
+        textList.add(t6);
+        textStyleAdapter = new TextStyleAdapter(this , textList);
+        recyclerView.setAdapter(textStyleAdapter);
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(dialog.getWindow().getAttributes());
+        layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE;
+        dialog.getWindow().setAttributes(layoutParams);
+        dialog.getWindow().setBackgroundDrawableResource(R.color.trans);
+        dialog.show();
+        editText.requestFocus();
+        final String text = editText.getText().toString().trim();
+        CancleDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        DoneText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              //  Toast.makeText(EditStickers.this, "Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     public void BitmapSizeReducer() {
@@ -139,12 +226,14 @@ public class EditStickers extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-       startActivity(new Intent(getApplicationContext(), CropImageTool.class));
-       MyStickerManager.MyBitmap(toSet);
+        startActivity(new Intent(getApplicationContext(), CropImageTool.class));
+        MyStickerManager.MyBitmap(toSet);
         overridePendingTransition(0,R.anim.out_right);
        finish();
     }
-    public void BottomSheet(Context context){
+    public void BottomSheet(Context context) throws IOException {
+        AssetManager as = context.getAssets();
+        String [] Emoji = as.list("/emoji");
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(EditStickers.this);
         bottomSheetDialog.setContentView(R.layout.bottomsheet_dialog);
         bottomSheetDialog.setCancelable(true);
@@ -160,4 +249,5 @@ public class EditStickers extends AppCompatActivity {
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.show();
     }
+
 }

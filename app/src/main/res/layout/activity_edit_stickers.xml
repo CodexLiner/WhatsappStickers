@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewStickerManager.ImageErasing.CropImageTool">
+    tools:context=".NewStickerManager.ImageErasing.EditStickers">
     <LinearLayout
         android:gravity="center"
         android:baselineAligned="false"
@@ -103,6 +103,7 @@
 <!--        </LinearLayout>-->
 
         <LinearLayout
+            android:id="@+id/AddText"
             android:layout_margin="25dp"
             android:background="@drawable/buttonshape2"
             android:layout_gravity="center"

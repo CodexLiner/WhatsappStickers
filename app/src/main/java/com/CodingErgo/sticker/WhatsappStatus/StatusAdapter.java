@@ -56,7 +56,7 @@ public class StatusAdapter extends  RecyclerView.Adapter<StatusAdapter.Holder>{
         }
         if (!model.getUri().toString().endsWith(".mp4")) { holder.play.setVisibility(View.GONE); }
         Glide.with(holder.status).load(model.getUri()).into(holder.status);
-        Log.d("TAG", "onBindViewHolder: "+model.getUri());
+        Log.d("TAG", "onBindViewHolder: "+arrayList.toString());
         holder.share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

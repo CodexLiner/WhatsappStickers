@@ -14,6 +14,7 @@ import android.graphics.Point;
 import android.graphics.RectF;
 import android.text.BoringLayout;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -25,17 +26,15 @@ import com.CodingErgo.sticker.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.ContentValues.TAG;
+
 public class StickerEditorView extends View implements View.OnTouchListener {
     Bitmap mainBitmap;
-    Point onStart;
     Point onClose;
-    boolean isStepOne, isStepTwo;
     List<Point> points;
     Paint mPaint;
     Path mPath;
-    int Zoom =1 ;
-    int mode ;
-    float isBig;
+    int x , y;
 
     public StickerEditorView(Context context) {
         super(context);
@@ -74,8 +73,8 @@ public class StickerEditorView extends View implements View.OnTouchListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int x = (getWidth() - mainBitmap.getWidth()) / 2;
-        int y = (getHeight() - mainBitmap.getHeight()) / 2;
+         x = (getWidth() - mainBitmap.getWidth()) / 2;
+         y = (getHeight() - mainBitmap.getHeight()) / 2;
         canvas.drawBitmap(mainBitmap, x, y, null);
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.STROKE);
@@ -109,6 +108,29 @@ public class StickerEditorView extends View implements View.OnTouchListener {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()){
+            case MotionEvent.ACTION_POINTER_DOWN :{
+                Log.d(TAG, "onTouchDragDOWN: true ");
+                return true;
+
+            }
+            case MotionEvent.ACTION_MOVE:{
+                float ny = event.getY();
+                float nx = event.getX();
+               if (event.getAction() == MotionEvent.ACTION_MOVE){
+                   int newHeight = getHeight() + (int) nx;
+                     int newWidth = getWidth() +(int) ny;
+                       mainBitmap = getResizedMap(mainBitmap , newWidth , newHeight);
+                        postInvalidate();
+                         return true;
+
+               }
+                // Log.d(TAG, "onTouchDragMove: true ");
+
+            }
+            case MotionEvent.ACTION_POINTER_UP:{
+                postInvalidate();
+                return true;
+            }
 
         }
 

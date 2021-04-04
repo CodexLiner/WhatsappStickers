@@ -27,7 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NewStickerManager.ImageErasing.EditStickers"></activity>
+        <activity android:name=".NewStickerManager.ImageErasing.EditStickers" />
         <activity android:name=".NewStickerManager.ImageErasing.CropImageTool" />
         <activity
             android:name=".NewStickerManager.Gallary.GalleryView"
@@ -44,7 +44,7 @@
             android:theme="@style/AppTheme3" />
         <activity
             android:name=".MyManager.PermissionRequest"
-            android:theme="@style/AppTheme2"></activity>
+            android:theme="@style/AppTheme2" />
         <activity
             android:name=".WhatsappStatus.status"
             android:theme="@style/AppTheme" />
