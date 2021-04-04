@@ -49,7 +49,7 @@ public class StickerEditorView extends View implements View.OnTouchListener {
     }
 
     public void OnCreate(@Nullable AttributeSet set) {
-        mainBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ppp);
+        mainBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.window);
         setFocusable(true);
         setFocusableInTouchMode(true);
         getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {

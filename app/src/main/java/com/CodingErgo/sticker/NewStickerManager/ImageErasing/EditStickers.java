@@ -2,6 +2,8 @@ package com.CodingErgo.sticker.NewStickerManager.ImageErasing;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -14,10 +16,17 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
 import com.CodingErgo.sticker.NewStickerManager.Views.CropImageClass;
 import com.CodingErgo.sticker.R;
+import com.bumptech.glide.load.engine.Initializable;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
@@ -25,6 +34,7 @@ import java.io.FileInputStream;
 import static android.content.ContentValues.TAG;
 
 public class EditStickers extends AppCompatActivity {
+    LinearLayout BottomSheet , EditText ;
     Bitmap toSet , toCreate;
     Paint mPaint ;
     Path mPath;
@@ -40,12 +50,14 @@ public class EditStickers extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_stickers);
+        BottomSheet = findViewById(R.id.BottomSheet);
         CropedImage = findViewById(R.id.CropedImage);
         xInt = getIntent().getIntExtra("xInt",0);
         yInt = getIntent().getIntExtra("yInt", 0);
         parceX = getIntent().getIntExtra("parceX",0);
         parceY = getIntent().getIntExtra("parceY", 0);
         crop = getIntent().getBooleanExtra("crop", false);
+        ButtonManager();
         int height , width;
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -72,6 +84,8 @@ public class EditStickers extends AppCompatActivity {
 
                 mRect.bottom = parceY;
                 mRect.right = parceX;
+                Log.d(TAG, "parcey "+parceY);
+                Log.d(TAG, "parcex "+parceX);
 
             }
             canvas.drawRect(mRect , mPaint);
@@ -85,6 +99,16 @@ public class EditStickers extends AppCompatActivity {
         canvas.drawBitmap(toSet , xInt, yInt, mPaint);
         BitmapSizeReducer();
     }
+
+    private void ButtonManager() {
+        BottomSheet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BottomSheet(getApplicationContext() );
+            }
+        });
+    }
+
     public void BitmapSizeReducer() {
         int width = 1500;
         int height = 2100;
@@ -105,7 +129,7 @@ public class EditStickers extends AppCompatActivity {
         transformation.preScale(scale, scale);
 
         Paint paint = new Paint();
-        paint.setFilterBitmap(true);
+        paint.setFilterBitmap(false);
 
         canvas.drawBitmap(toCreate, transformation, paint);
         CropedImage.setImageBitmap(background);
@@ -115,5 +139,25 @@ public class EditStickers extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+       startActivity(new Intent(getApplicationContext(), CropImageTool.class));
+       MyStickerManager.MyBitmap(toSet);
+        overridePendingTransition(0,R.anim.out_right);
+       finish();
+    }
+    public void BottomSheet(Context context){
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(EditStickers.this);
+        bottomSheetDialog.setContentView(R.layout.bottomsheet_dialog);
+        bottomSheetDialog.setCancelable(true);
+        bottomSheetDialog.show();
+    }
+    private void ToastMaker(){
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.toast_layout_file , (findViewById(R.id.Toast_shape_layout)));
+        Toast toast = new Toast(this);
+        toast.setGravity(Gravity.CENTER_VERTICAL,0,0);
+        toast.setText("Hello Toast");
+        toast.setView(view);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.show();
     }
 }

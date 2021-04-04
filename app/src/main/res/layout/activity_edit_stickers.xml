@@ -132,6 +132,8 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/BottomSheet"
+            android:foreground="@drawable/click_graound"
             android:layout_margin="25dp"
             android:background="@drawable/buttonshape2"
             android:layout_gravity="center"

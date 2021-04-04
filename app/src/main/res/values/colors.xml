@@ -15,5 +15,6 @@
     <color name="ll3">#0e1e2f</color>
     <color name="trans">#00000000</color>
     <color name="active">#42A5F5</color>
+    <color name="ripple">#68B3B3B3</color>
 
 </resources>

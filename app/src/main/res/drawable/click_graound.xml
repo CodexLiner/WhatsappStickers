@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/main2" android:state_pressed="true" />
-    <item android:drawable="@color/colorPrimary" android:state_pressed="false"/>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item >
+        <ripple android:color="@color/ripple" android:radius="100dp" />
+        <selector >
+            <item android:drawable="@color/colorPrimaryDark" android:state_pressed="true" />
+            <item android:drawable="@color/colorPrimary" android:state_pressed="false"/>
+            <item android:state_active="true" android:drawable="@color/active" />
+            <item android:state_enabled="true" android:drawable="@color/main2"/>
+        </selector>
 
-    <item android:state_active="true" android:drawable="@color/active" />
+    </item>
 
-</selector>
+
+</layer-list>
