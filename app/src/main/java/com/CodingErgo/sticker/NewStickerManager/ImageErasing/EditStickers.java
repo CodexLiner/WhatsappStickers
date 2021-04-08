@@ -1,6 +1,7 @@
 package com.CodingErgo.sticker.NewStickerManager.ImageErasing;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +19,7 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
@@ -35,6 +37,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.CodingErgo.sticker.MyStickerManager.MyStickerManager;
+import com.CodingErgo.sticker.NewStickerManager.EnterText.Emojis.EmojiAdapter;
+import com.CodingErgo.sticker.NewStickerManager.EnterText.Emojis.EmojiModel;
 import com.CodingErgo.sticker.NewStickerManager.EnterText.TextModel;
 import com.CodingErgo.sticker.NewStickerManager.EnterText.TextStyleAdapter;
 import com.CodingErgo.sticker.NewStickerManager.Views.CropImageClass;
@@ -55,6 +59,7 @@ public class EditStickers extends AppCompatActivity {
     Dialog dialog;
     Bitmap toSet , toCreate;
     Paint mPaint ;
+    ImageView Manu;
     Path mPath;
     RectF mRect;
     FileInputStream fs;
@@ -70,6 +75,7 @@ public class EditStickers extends AppCompatActivity {
         setContentView(R.layout.activity_edit_stickers);
         BottomSheet = findViewById(R.id.BottomSheet);
         CropedImage = findViewById(R.id.CropedImage);
+        Manu = findViewById(R.id.ManualCrop);
         AddText = findViewById(R.id.AddText);
         xInt = getIntent().getIntExtra("xInt",0);
         yInt = getIntent().getIntExtra("yInt", 0);
@@ -180,7 +186,6 @@ public class EditStickers extends AppCompatActivity {
         dialog.getWindow().setBackgroundDrawableResource(R.color.trans);
         dialog.show();
         editText.requestFocus();
-        final String text = editText.getText().toString().trim();
         CancleDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,7 +195,14 @@ public class EditStickers extends AppCompatActivity {
         DoneText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  Toast.makeText(EditStickers.this, "Clicked", Toast.LENGTH_SHORT).show();
+                String text = editText.getText().toString().trim();
+                if (TextUtils.isEmpty(text)) {
+                    // editText.setError("errorr");
+                    return;
+                }
+                CropedImage.AddTextToMap(text, "qh.ttf");
+                dialog.dismiss();
+                Toast.makeText(EditStickers.this, "Clicked", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -233,10 +245,17 @@ public class EditStickers extends AppCompatActivity {
     }
     public void BottomSheet(Context context) throws IOException {
         AssetManager as = context.getAssets();
-        String [] Emoji = as.list("/emoji");
-        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(EditStickers.this);
+        String [] Emoji = as.list("emoji");
+        EmojiAdapter adapter ;
+        EmojiModel model;
+        ArrayList<Object> Emjois;
+        RecyclerView EmojiRec;
+        BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(EditStickers.this,R.style.BottomSheet);
         bottomSheetDialog.setContentView(R.layout.bottomsheet_dialog);
         bottomSheetDialog.setCancelable(true);
+        bottomSheetDialog.getWindow().setBackgroundDrawableResource(R.color.trans);
+        EmojiRec = bottomSheetDialog.findViewById(R.id.EmojiRec);
+        EmojiRec.setLayoutManager(new GridLayoutManager(this ,5));
         bottomSheetDialog.show();
     }
     private void ToastMaker(){

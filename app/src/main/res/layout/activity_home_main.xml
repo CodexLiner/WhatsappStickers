@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.BottomMaterial"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".StickerManager.StickerPackListActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/actionbarshape">
+        <TextView
+            android:textColor="#FFFFFF"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sticker's Wale"
+            android:layout_margin="15dp"
+            android:textStyle="bold"
+            android:textSize="25sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:id="@+id/error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textColor="@android:color/holo_red_dark"
+        tools:text="@string/error_message" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="64dp"
+        android:id="@+id/homeRec"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"/>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom">
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:backgroundTint="@color/main2"
+            app:fabCradleVerticalOffset="0dp"
+            app:fabAlignmentMode="center"
+            app:fabCradleRoundedCornerRadius="20dp"
+            android:layout_gravity="bottom"
+            android:id="@+id/bottomBar">
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_marginEnd="16dp"
+                android:id="@+id/bottomNav"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:layout_gravity="bottom"
+                android:background="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:itemIconTint="@drawable/selector"
+                app:itemTextColor="@drawable/selector"
+                app:menu="@menu/bottom_menui"/>
+        </com.google.android.material.bottomappbar.BottomAppBar>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            app:elevation="1dp"
+            android:id="@+id/FabBtn"
+            app:backgroundTint="@color/main3"
+            app:tint="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/add22"
+            app:layout_anchor="@id/bottomBar"
+            android:contentDescription="@string/todo" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</FrameLayout>

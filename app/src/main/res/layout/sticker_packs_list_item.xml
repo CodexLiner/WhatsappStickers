@@ -76,6 +76,7 @@
 
 
                 <TextView
+                    android:background="#FF0000"
                     android:id="@+id/sticker_pack_publisher"
                     style="@style/sticker_packs_list_item_author_style"
                     android:layout_width="wrap_content"

@@ -124,5 +124,11 @@ dependencies {
     implementation group: 'commons-io', name: 'commons-io', version: '2.6'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
     implementation 'com.onesignal:OneSignal:4.3.0'
+    implementation 'com.firebaseui:firebase-ui-database:7.1.1'
+
+    implementation 'com.firebaseui:firebase-ui-firestore:7.1.1'
+    implementation 'com.firebaseui:firebase-ui-auth:7.1.1'
+    implementation 'com.firebaseui:firebase-ui-storage:7.1.1'
+
 
 }

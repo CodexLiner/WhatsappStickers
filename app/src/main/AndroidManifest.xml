@@ -27,24 +27,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NewStickerManager.ImageErasing.EditStickers" />
-        <activity android:name=".NewStickerManager.ImageErasing.CropImageTool" />
-        <activity
-            android:name=".NewStickerManager.Gallary.GalleryView"
-            android:theme="@style/AppTheme2">
+        <activity android:name=".HomePackage.HomeMain">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+        <activity android:name=".NewStickerManager.ImageErasing.EditStickers" />
+        <activity android:name=".NewStickerManager.ImageErasing.CropImageTool" />
+        <activity
+            android:name=".NewStickerManager.Gallary.GalleryView"
+            android:theme="@style/AppTheme2" />
         <activity android:name=".TestPackage.testAcitivity" />
         <activity
             android:name=".MyManager.MyDownloadManager"
             android:theme="@style/AppTheme3" />
         <activity
             android:name=".MyManager.PermissionRequest"
-            android:theme="@style/AppTheme2" />
+            android:theme="@style/AppTheme2">
+
+        </activity>
         <activity
             android:name=".WhatsappStatus.status"
             android:theme="@style/AppTheme" />

@@ -1,6 +1,7 @@
 package com.CodingErgo.sticker.NewStickerManager.ImageErasing;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -12,6 +13,7 @@ import android.graphics.Path;
 import android.graphics.Picture;
 import android.graphics.Point;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.text.BoringLayout;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -29,12 +31,12 @@ import java.util.List;
 import static android.content.ContentValues.TAG;
 
 public class StickerEditorView extends View implements View.OnTouchListener {
-    Bitmap mainBitmap;
-    Point onClose;
-    List<Point> points;
+    Bitmap mainBitmap, tmbp;
     Paint mPaint;
-    Path mPath;
     int x , y;
+    int textHeight , textWidth;
+    String canvasText = "";
+    String textFace = "qh.ttf";
 
     public StickerEditorView(Context context) {
         super(context);
@@ -58,7 +60,6 @@ public class StickerEditorView extends View implements View.OnTouchListener {
                 mainBitmap = getResizedMap(mainBitmap, getWidth() - 50, getHeight() - 50);
             }
         });
-        points = new ArrayList<>();
         invalidate();
     }
 
@@ -67,43 +68,44 @@ public class StickerEditorView extends View implements View.OnTouchListener {
         RectF src = new RectF(0, 0, mainBitmap.getHeight(), mainBitmap.getWidth());
         RectF dest = new RectF(0, 0, width, height);
         m.setRectToRect(src, dest, Matrix.ScaleToFit.CENTER);
-        return Bitmap.createBitmap(mainBitmap, 0, 0, mainBitmap.getWidth(), mainBitmap.getHeight(), m, true);
+        return Bitmap.createBitmap(mainBitmap, 0, 0, mainBitmap.getWidth(), mainBitmap.getHeight(), m, false);
     }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-         x = (getWidth() - mainBitmap.getWidth()) / 2;
-         y = (getHeight() - mainBitmap.getHeight()) / 2;
-        canvas.drawBitmap(mainBitmap, x, y, null);
-        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setPathEffect(new DashPathEffect(new float[]{10, 20, 30}, 20));
-        mPaint.setStrokeWidth(10);
-        mPaint.setColor(Color.RED);
-        mPath = new Path();
-
-        boolean First = true;
-        for (int i = 0; i < points.size(); i += 2) {
-            Point Initial = points.get(i);
-            if (First) {
-                First = false;
-                mPath.moveTo(Initial.x, Initial.y);
-            } else if (i < points.size() - 1) {
-                Point next = points.get(i + 1);
-                mPath.quadTo(Initial.x, Initial.y, next.x, next.y);
-            } else {
-                onClose = points.get(i);
-                mPath.lineTo(Initial.x, Initial.y);
-            }
-        }
-        canvas.drawPath(mPath, mPaint);
-
+    public void AddTextToMap(String text , String face ){
+        canvasText = text;
+        textFace = face;
+        invalidate();
     }
-
     public void setImageBitmap(Bitmap bm) {
         mainBitmap = bm;
     }
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+// Image Bitmap
+        x = (getWidth() - mainBitmap.getWidth()) / 2;
+        y = (getHeight() - mainBitmap.getHeight()) / 2;
+        canvas.drawBitmap(mainBitmap, x, y, null);
+// Text Bitmap
+        mPaint = new Paint();
+        textWidth = canvas.getWidth() / 2 ;
+        textHeight = canvas.getHeight() / 2;
+        AssetManager as = getContext().getAssets();
+        Typeface typeface = Typeface.createFromAsset(as ,textFace);
+        mPaint.setTypeface(typeface);
+        mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+      //  mPaint.setStyle(Paint.Style.STROKE);
+        mPaint.setPathEffect(new DashPathEffect(new float[]{10, 20, 30}, 20));
+        mPaint.setStrokeWidth(10);
+        mPaint.setColor(Color.parseColor("#FF42A5F5"));
+        mPaint.setTextSize(80);
+        mPaint.setTextAlign(Paint.Align.CENTER);
+        canvas.drawText(canvasText, textWidth , textHeight , mPaint);
+        canvas.save();
+
+
+    }
+
+
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
